@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service: one
+  booking: one
+  billing: one
+
+two:
+  service: two
+  booking: two
+  billing: two
