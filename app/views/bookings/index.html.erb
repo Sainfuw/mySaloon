@@ -1,43 +1,57 @@
-<p id="notice"><%= notice %></p>
+<div class=" content-area">
+  <div class="page-header">
+    <h4 class="page-title">Tabla de Reservas</h4>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Reservas</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Listado</li>
+    </ol>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Basic Table</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table card-table table-vcenter text-nowrap">
+            <thead>
+              <tr>
+                <th>Formula</th>
+                <th>Comentario</th>
+                <th>Fecha</th>
+                <th>Inicio</th>
+                <th>Termino</th>
+                <th>Estado</th>
+                <th>Profesional</th>
+                <th>Creador</th>
+                <th>Cliente</th>
+                <th></th>
+              </tr>
+            </thead>
 
-<h1>Bookings</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Formula</th>
-      <th>Comment</th>
-      <th>Date</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Status</th>
-      <th>User</th>
-      <th>Author</th>
-      <th>Customer</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.formula %></td>
-        <td><%= booking.comment %></td>
-        <td><%= booking.date %></td>
-        <td><%= booking.start_time %></td>
-        <td><%= booking.end_time %></td>
-        <td><%= booking.status %></td>
-        <td><%= booking.user %></td>
-        <td><%= booking.author %></td>
-        <td><%= booking.customer %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Booking', new_booking_path %>
+            <tbody>
+              <% @bookings.each do |booking| %>
+                <tr>
+                  <td><%= booking.formula %></td>
+                  <td><%= booking.comment %></td>
+                  <td><%= booking.date %></td>
+                  <td><%= booking.start_time %></td>
+                  <td><%= booking.end_time %></td>
+                  <td><%= booking.status %></td>
+                  <td><%= booking.user.name %></td>
+                  <td><%= booking.author.name %></td>
+                  <td><%= booking.customer.name %></td>
+                  <td class="text-right">
+                    <%= link_to '<i class="fe fe-plus mr-2"></i>Mostrar'.html_safe, booking, class: "btn btn-primary" %>
+                    <%= link_to '<i class="fe fe-settings mr-2"></i>Editar'.html_safe, edit_booking_path(booking), class: "btn btn-info" %>
+                    <%= link_to '<i class="fe fe-x mr-2"></i>Eliminar'.html_safe, booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- table-responsive -->
+      </div>
+    </div>
+  </div>
