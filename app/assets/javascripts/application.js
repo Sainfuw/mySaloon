@@ -10,10 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery/dist/jquery
-//= require popper.js/dist/umd/popper-utils
-//= require bootstrap/dist/js/bootstrap
+//= require vendors/jquery-3.2.1.min
+//= require vendors/bootstrap.bundle.min
+//= require vendors/jquery.sparkline.min
+//= require vendors/selectize.min
+//= require vendors/jquery.tablesorter.min
+//= require vendors/circle-progress.min
+//= require rating/jquery.rating-stars
+//= require fullside-menu/jquery.slimscroll.min
+//= require fullside-menu/waves.min
+//= require scroll-bar/jquery.mCustomScrollbar.concat.min
+//= require custom
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
