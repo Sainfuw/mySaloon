@@ -6,5 +6,5 @@ class Booking < ApplicationRecord
   has_many :services, through: :booking_services
   has_many :billings, through: :booking_services
 
-  enum status: { nulled: 0, active: 1, completed: 2 }
+  enum status: [ :nulled, :active, :completed ]
 end

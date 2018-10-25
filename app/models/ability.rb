@@ -5,7 +5,7 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif
-      can [:manage, :edit, :update], :all 
+      can [:read, :edit, :update], :all 
     else
       can :read, :all
     end

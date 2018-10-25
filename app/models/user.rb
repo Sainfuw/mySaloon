@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :services
   has_many :bookings
 
-   enum role: { professional: 0, assistant: 1, admin: 2 }
-   enum status: { disable: 0, enable: 1 }
+   enum role: [ :professional, :assistant, :admin ]
+   enum status: [ :disable, :enable ]
 end
