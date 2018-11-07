@@ -4,5 +4,5 @@ class Service < ApplicationRecord
   has_many :bookings, through: :booking_services
   has_many :billings, through: :booking_services
 
-  enum status: [ :disable, :enable ]
+  enum status: [ :disabled, :enabled ]
 end

@@ -1,111 +1,15 @@
-<div class=" content-area">
+<div class="content-area">
 	<div class="page-header">
-		<h4 class="page-title">Crear Servicio</h4>
+		<h4 class="page-title">Nuevo Servicio</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Servicios</a></li>
+			<li class="breadcrumb-item">Servicios</li>
 			<li class="breadcrumb-item active" aria-current="page">Crear</li>
 		</ol>
-
 	</div>
+
 	<div class="row">
 		<div class="col-12">
-			<form  method="post" class="card">
-				<div class="card-header">
-					<h3 class="card-title">Formulario</h3>
-				</div>
-				<div class="card-body">
-					<div class="row">
-						<div class="col-md-12 col-lg-12">
-							<div class="form-group">
-								<label class="form-label">Enter Name</label>
-								<input type="text" class="form-control" name="example-text-input" placeholder="Name">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Text</label>
-								<input type="text" class="form-control" name="example-text-input" placeholder="Text..">
-							</div>
-
-							<div class="form-group">
-								<label class="form-label">Message <span class="form-label-small">56/100</span></label>
-								<textarea class="form-control" name="example-textarea-input" rows="6" placeholder="text here.."></textarea>
-							</div>
-						</div>
-						<div class="col-md-12 col-lg-12">							
-							<div class="form-group">
-								<div class="form-label">Bootstrap's Custom File Input</div>
-								<div class="custom-file">
-									<input type="file" class="custom-file-input" name="example-file-input-custom">
-									<label class="custom-file-label">Choose file</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-footer text-right">
-					<div class="d-flex">
-						<a href="javascript:void(0)" class="btn btn-link">Cancel</a>
-						<button type="submit" class="btn btn-primary ml-auto">Send data</button>
-					</div>
-				</div>
-			</form>	
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Time Picker</h3>
-        </div>
-        <div class=" card-body">
-          <label>Default Time Picker:</label>
-          <div class="wd-150 mg-b-30">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fa fa-clock-o tx-16 lh-0 op-6"></i>
-                </div>
-              </div><!-- input-group-prepend -->
-              <input class="form-control ui-timepicker-input" id="tpBasic" placeholder="Set time" type="text" autocomplete="off">
-            </div>
-          </div><!-- wd-150 -->
-          <label class="mt-4">Set the scroll position to local time if no value selected:</label>
-          <div class="wd-150 mg-b-30">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fa fa-clock-o tx-16 lh-0 op-6"></i>
-                </div><!-- input-group-text -->
-              </div><!-- input-group-prepend -->
-              <input class="form-control ui-timepicker-input" id="tp2" placeholder="Set time" type="text" autocomplete="off">
-            </div>
-          </div><!-- wd-150 -->
-          <label class="mt-4 ">Dynamically set the time using a Javascript Date object:</label>
-          <div class="d-flex">
-            <div class="input-group wd-150">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fa fa-clock-o tx-16 lh-0 op-6"></i>
-                </div><!-- input-group-text -->
-              </div><!-- input-group-prepend -->
-              <input class="form-control ui-timepicker-input" id="tp3" placeholder="Set time" type="text" autocomplete="off">
-              <button class="btn btn btn-primary " id="setTimeButton">Set Current Time</button>
-            </div><!-- input-group -->
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Default Date picker</div>
-        </div>
-        <div class="card-body">
-          <p class="mg-b-20 mg-sm-b-40">The datepicker is tied to a standard form input field. Click on the input to open an interactive calendar in a small overlay. If a date is chosen, feedback is shown as the input's value.</p>
-          <div class="wd-200 mg-b-30">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
-                </div>
-              </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" type="text" id="dp1540471227181">
-            </div>
-          </div>
-        </div>
-      </div>		
-		</div>
+      <%= render 'form', service: @service %>
+    </div>
 	</div>
 </div>

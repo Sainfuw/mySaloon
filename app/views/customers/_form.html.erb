@@ -1,4 +1,4 @@
-<%= form_with(model: customer, local: true) do |form| %>
+<%= form_with(model: customer, local: true, class: "card") do |form| %>
   <% if customer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
@@ -10,33 +10,31 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="form-group">
+          <%= form.label :name, "Nombre", class: "form-label" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Ingrese su nombre" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :email, "Correo Electronico", class: "form-label" %>
+          <%= form.email_field :email, class: "form-control", placeholder: "Ingrese su Correo Electronico" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :phone, "Telefono", class: "form-label" %>
+          <%= form.text_field :phone, class: "form-control", placeholder: "Ingrese su Telefono" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :status, "Nombre", class: "form-label" %>
+          <%= form.select :status, @status, { selected: "enabled" } , { class: "form-control custom-select" } %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :author_id %>
-    <%= form.text_field :author_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="card-footer text-right">
+    <div class="d-flex">
+      <%= form.submit "Guardar", class: "btn btn-primary ml-auto", style: "width: 200px" %>
+    </div>
   </div>
 <% end %>

@@ -5,59 +5,71 @@
       <div class="user-profile">
         <div class="dropdown user-pro-body">
           <div><img src="<%= asset_path('faces/male/25.jpg') %>" alt="user-img" class="img-circle"></div>
-          <div class="mb-2"><a href="" class="" data-toggle="" aria-haspopup="true" aria-expanded="false"> <span class="font-weight-semibold">Emilio Navarro</span>  </a>
-          <br><span class="text-gray">Administrador</span>
+          <div class="mb-2">
+            <a href="" class="" data-toggle="" aria-haspopup="true" aria-expanded="false"> 
+            <span class="font-weight-semibold"><%= current_user.name + " " + current_user.lastname %></span></a>
+            <br><span class="text-gray"><%= current_user_role %></span>
           </div>
           <a href="" title="settings" class="user-button"><i class="fa fa-cogs"></i></a>
           <a href="" title="mail" class="user-button"><i class="fa fa-envelope"></i></a>
-          <a href="" title="logout" class="user-button"><i class="fa fa-sign-out"></i></a>
+          <a href="<%= destroy_user_session_path %>" data-method="delete" title="logout" class="user-button"><i class="fa fa-sign-out"></i></a>
         </div>
       </div>
 
-      <li>
-        <a href="<%= root_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-tachometer mr-2"></i>Información</a>
-      </li>
-      <li class="">
-        <a href="#clients" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
-          <i class="fa fa-male mr-2"></i> Clientes
-        </a>
-        <ul class="collapse list-unstyled" id="clients" data-parent="#accordion">
-          <li>
-            <%= link_to 'Listar Clientes', customers_path %>
-          </li>
-          <li>
-            <%= link_to 'Crear Cliente', new_customer_path %>
-          </li>
-        </ul>
-      </li>
-      <li class="">
-        <a href="#services" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
-          <i class="fa fa-th-large mr-2"></i>Servicios
-        </a>
-        <ul class="collapse list-unstyled" id="services" data-parent="#accordion">
-          <li>
-            <%= link_to 'Listar Servicios', services_path %>
-          </li>
-          <li>
-            <%= link_to 'Crear Servicio', new_service_path %>
-          </li>
-        </ul>
-      </li>
-      <li class="">
-        <a href="#bookings" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
-          <i class="fa fa-shopping-cart mr-2"></i>Reservas
-        </a>
-        <ul class="collapse list-unstyled" id="bookings" data-parent="#accordion">
-          <li>
-            <%= link_to 'Listar Reservas', bookings_path %>
-          </li>
-          <li>
-            <%= link_to 'Crear Reserva', new_booking_path %>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="widgets.html" class=" wave-effect waves-effect waves-button"><i class="fa fa-dollar mr-2"></i>Ventas realizadas</a>
-      </li>
+      <% if current_user.admin? %>
+        <li>
+          <a href="<%= root_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-tachometer mr-2"></i>Información</a>
+        </li>
+      <% end %>
+      <% if can? :read, Customer %>
+        <li class="">
+          <a href="#clients" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+            <i class="fa fa-male mr-2"></i> Clientes
+          </a>
+          <ul class="collapse list-unstyled" id="clients" data-parent="#accordion">
+            <li>
+              <%= link_to 'Listar Clientes', customers_path %>
+            </li>
+            <li>
+              <%= link_to 'Crear Cliente', new_customer_path %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+      <% if can? :read, Service %>
+        <li class="">
+          <a href="#services" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+            <i class="fa fa-th-large mr-2"></i>Servicios
+          </a>
+          <ul class="collapse list-unstyled" id="services" data-parent="#accordion">
+            <li>
+              <%= link_to 'Listar Servicios', services_path %>
+            </li>
+            <li>
+              <%= link_to 'Crear Servicio', new_service_path %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+      <% if can? :read, Booking %>
+        <li class="">
+          <a href="#bookings" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+            <i class="fa fa-shopping-cart mr-2"></i>Reservas
+          </a>
+          <ul class="collapse list-unstyled" id="bookings" data-parent="#accordion">
+            <li>
+              <%= link_to 'Listar Reservas', bookings_path %>
+            </li>
+            <li>
+              <%= link_to 'Crear Reserva', new_booking_path %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+      <% if current_user.admin? || current_user.assistant? %>
+        <li>
+          <a href="widgets.html" class=" wave-effect waves-effect waves-button"><i class="fa fa-dollar mr-2"></i>Ventas realizadas</a>
+        </li>
+      <% end %>
     </ul>
   </nav>

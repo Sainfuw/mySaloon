@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :check_boxes, only: [:new, :edit]
   load_and_authorize_resource
 
   # GET /customers
@@ -26,6 +27,7 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
+    @customer.author = current_user
 
     respond_to do |format|
       if @customer.save
@@ -66,6 +68,10 @@ class CustomersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
       @customer = Customer.find(params[:id])
+    end
+
+    def check_boxes
+      @status = [["Deshabilitado", "disabled"], ["Habilitado", "enabled"]]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

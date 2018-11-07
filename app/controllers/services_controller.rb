@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
+  before_action :combo_boxes, only: [:new, :edit]
   load_and_authorize_resource
 
   # GET /services
@@ -26,6 +27,7 @@ class ServicesController < ApplicationController
   # POST /services.json
   def create
     @service = Service.new(service_params)
+    @service.author = current_user
 
     respond_to do |format|
       if @service.save
@@ -66,6 +68,10 @@ class ServicesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_service
       @service = Service.find(params[:id])
+    end
+
+    def combo_boxes
+      @status = [["Deshabilitado", "disabled"], ["Habilitado", "enabled"]]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
