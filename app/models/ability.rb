@@ -4,10 +4,12 @@ class Ability
     user ||= User.new
     if user.admin?
       can :manage, :all
-    elsif
+    elsif user.assistant?
       can [:read, :edit, :update], :all 
-    else
+    elsif user.professional?
       can :read, :all
+    else
+      # no puede hacer nada
     end
   end
 end
