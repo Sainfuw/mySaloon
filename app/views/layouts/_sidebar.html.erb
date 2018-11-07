@@ -52,18 +52,8 @@
         </li>
       <% end %>
       <% if can? :read, Booking %>
-        <li class="">
-          <a href="#bookings" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
-            <i class="fa fa-shopping-cart mr-2"></i>Reservas
-          </a>
-          <ul class="collapse list-unstyled" id="bookings" data-parent="#accordion">
-            <li>
-              <%= link_to 'Listar Reservas', bookings_path %>
-            </li>
-            <li>
-              <%= link_to 'Crear Reserva', new_booking_path %>
-            </li>
-          </ul>
+        <li>
+          <a href="<%= bookings_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-shopping-cart mr-2"></i>Reservas</a>
         </li>
       <% end %>
       <% if current_user.admin? || current_user.assistant? %>

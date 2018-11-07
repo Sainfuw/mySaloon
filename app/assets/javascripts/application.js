@@ -20,14 +20,11 @@
 //= require rating/jquery.rating-stars
 //= require fullside-menu/jquery.slimscroll.min
 //= require fullside-menu/waves.min
-// ---- Timepicker ----
-//= require time-picker/jquery.timepicker
-//= require time-picker/toggles.min
-// ---- Datepicker ----
-//= require date-picker/spectrum
-//= require date-picker/jquery-ui
-//= require input-mask/jquery.maskedinput
+// ---- FullCalendar ----
+//= require fullcalendar/moment.min
+//= require fullcalendar/fullcalendar.min
 // ---- Custom Settings ----
+//= require fullcalendar
 //= require scroll-bar/jquery.mCustomScrollbar.concat.min
 //= require custom
 // ---- Rails ----

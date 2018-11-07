@@ -1,24 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="content-area">
+	<div class="page-header">
+		<h4 class="page-title">Informacion del Cliente</h4>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Clientes</li>
+			<li class="breadcrumb-item active" aria-current="page">Informacion</li>
+		</ol>
+	</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @service.name %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @service.price %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @service.status %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @service.author %>
-</p>
-
-<%= link_to 'Edit', edit_service_path(@service) %> |
-<%= link_to 'Back', services_path %>
+	<div class="row">
+		<div class="col-12">
+      <div class="card-body">
+        <div class=" " id="profile-log-switch">
+          <div class="fade show active ">
+            <div class="table-responsive border ">
+              <table class="table row table-borderless w-100 m-0 ">
+                <tbody class="col-12 p-0">
+                  <tr>
+                    <td><strong>Nombre :</strong><%= @service.name %> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Precio :</strong><%= @service.price %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Estado :</strong><%= @service.status ? "Habilitado" : "Deshabilitado" %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Creador :</strong><%= @service.author.name %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

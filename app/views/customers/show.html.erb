@@ -1,29 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="content-area">
+	<div class="page-header">
+		<h4 class="page-title">Informacion del Cliente</h4>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Clientes</li>
+			<li class="breadcrumb-item active" aria-current="page">Informacion</li>
+		</ol>
+	</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @customer.phone %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @customer.status %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @customer.author %>
-</p>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+	<div class="row">
+		<div class="col-12">
+      <div class="card-body">
+        <div class=" " id="profile-log-switch">
+          <div class="fade show active ">
+            <div class="table-responsive border ">
+              <table class="table row table-borderless w-100 m-0 ">
+                <tbody class="col-6 p-0">
+                  <tr>
+                    <td><strong>Nombre :</strong><%= @customer.name %> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Apellido :</strong><%= @customer.name %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Telefono :</strong><%= @customer.phone %></td>
+                  </tr>
+                </tbody>
+                <tbody class="col-6 p-0">
+                  <tr>
+                    <td><strong>Correo Electronico :</strong><%= @customer.email %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Estado :</strong><%= @customer.status ? "Habilitado" : "Deshabilitado" %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Creador :</strong><%= @customer.author.name %> </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

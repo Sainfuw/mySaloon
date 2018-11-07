@@ -10,14 +10,19 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ * ---- Page Base ----
  *= require bootstrap/dist/css/bootstrap
  *= require fonts/font-awesome.min
  *= require fullside-menu/css/style
  *= require fullside-menu/waves.min
+ * ---- FullCalendar ----
+ *= require fullcalendar/fullcalendar
+ * ---- Theme ----
  *= require dashboard.css
  *= require charts-c3/c3-chart
  *= require scroll-bar/jquery.mCustomScrollbar
  *= require iconfonts/plugin
+ * ---- Rails ----
  *= require_tree .
  *= require_self
  */
