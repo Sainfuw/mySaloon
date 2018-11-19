@@ -1,62 +1,53 @@
-<%= form_with(model: booking, local: true) do |form| %>
-  <% if booking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+  <%= form_with(model: booking) do |form| %>
+    <% if booking.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
 
-      <ul>
-      <% booking.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% booking.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label 'Formula', class: 'form-control-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
     </div>
+
+    <div class="form-group">
+      <%= form.label 'Comentario', class: 'form-control-label' %>
+      <%= form.text_area :comment, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label 'Inicio', class: 'form-control-label' %>
+      <%= form.time_select :start %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label 'Termino', class: 'form-control-label' %>
+      <%= form.time_select :end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label 'Estado', class: 'form-control-label' %>
+      <%= form.select :status, Booking.statuses.keys.map { |s| [s.titleize,s] }, { selected: "active" } , { class: "form-control custom-select" } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label 'Usuario', class: 'form-control-label' %>
+      <%= form.select :user_id, User.pluck(:name, :id), { selected: 1 } , { class: "form-control custom-select" } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label 'Cliente', class: 'form-control-label' %>
+      <%= form.select :customer_id, Customer.pluck(:name, :id), { selected: 1 } , { class: "form-control custom-select" } %>
+    </div>
+</div>
+<div class="actions modal-footer">
+  <button type="button" class="btn btn-secondary mt-4" data-dismiss="modal">Cerrar</button>
+  <%= form.submit 'Guardar', class: 'btn btn-primary mt-4' %>
+</div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :formula %>
-    <%= form.text_area :formula %>
-  </div>
-
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_area :comment %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.time_select :start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.time_select :end_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :author_id %>
-    <%= form.text_field :author_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :customer_id %>
-    <%= form.text_field :customer_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

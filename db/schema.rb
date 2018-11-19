@@ -38,11 +38,10 @@ ActiveRecord::Schema.define(version: 2018_10_04_230431) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.text "formula"
+    t.text "title"
     t.text "comment"
-    t.date "date"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start"
+    t.datetime "end"
     t.integer "status"
     t.bigint "user_id"
     t.bigint "author_id"

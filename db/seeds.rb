@@ -12,8 +12,8 @@ Customer.destroy_all
 User.destroy_all
 
 @admin = User.create(
-  email: "admin@mta.cl",
-  password: "123123",
+  email: "devel@mta.cl",
+  password: "prueba",
   name: "Emilio",
   lastname: "Navarro",
   status: 1,
@@ -22,7 +22,7 @@ User.destroy_all
 
 @assistant = User.create(
   email: "assistant@mta.cl",
-  password: "123123",
+  password: "prueba",
   name: "Emilio",
   lastname: "Navarro",
   status: 1,
@@ -31,7 +31,7 @@ User.destroy_all
 
 @professional = User.create(
   email: "professional@mta.cl",
-  password: "123123",
+  password: "prueba",
   name: "Emilio",
   lastname: "Navarro",
   status: 1,
@@ -52,9 +52,12 @@ User.destroy_all
     author: @admin
   )
   2.times do |x|
+    start_at = Random.rand(15).days.ago + 5.days
     @booking = Booking.create(
-      formula: "Formula #{x + 1}",
-      comment: "Reserva #{@customer.name} #{x + 1}",
+      title: Faker::Overwatch.hero,
+      comment: Faker::Overwatch.quote,
+      start: start_at,
+      end: start_at,
       status: rand(3),
       user: @professional,
       author: @admin,

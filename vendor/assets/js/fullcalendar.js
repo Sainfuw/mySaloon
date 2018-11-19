@@ -1,7 +1,7 @@
 	
-/*---Selectable calendar---*/
 $(document).on('turbolinks:load', function() {
   var current_date = moment().format("YYYY-MM-DD");
+  /*---Selectable fullcalendar---*/
 	$('#calendar').fullCalendar({
     header: {
       left: 'prev,next today',
@@ -11,34 +11,29 @@ $(document).on('turbolinks:load', function() {
     defaultDate: current_date,
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
-    selectHelper: true,
-    select: function(start, end) {
-      var title = prompt('Titulo del evento:');
-      var eventData;
-      if (title) {
-        eventData = {
-          title: title,
-          start: start,
-          end: end
-        };
-        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-      }
-      $('#calendar').fullCalendar('unselect');
+    displayEventEnd: true,
+    select: function() {
+      $.ajax({
+        url: '/bookings/new',
+        type: 'GET',
+        dataType: 'script'
+      })
+    },
+    eventClick: function (event, jsEvent, view) {
+      $.ajax({
+        url: '/bookings/' + event.id + '/edit',
+        type: 'GET',
+        dataType: 'script'
+      })
+      if (event.url) { return false }
     },
     editable: true,
     eventLimit: true, // allow "more" link when too many events
-    events: [
-      {
-        title: 'Primer evento',
-        start: current_date
-      },
-      {
-        title: 'Otro evento',
-        start: current_date
-      }
-    ]
+    events: '/bookings'
     });
+  /*---end Selectable fullcalendar---*/
 
+  /*---calendar2---*/
     $('#calendar2').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -46,8 +41,6 @@ $(document).on('turbolinks:load', function() {
         right: 'listDay,listWeek,month'
       },
 
-      // customize the button names,
-      // otherwise they'd all just say "list"
       views: {
         listDay: { buttonText: 'list day' },
         listWeek: { buttonText: 'list week' }
@@ -58,15 +51,7 @@ $(document).on('turbolinks:load', function() {
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'Primer evento',
-          start: current_date
-        },
-        {
-          title: 'Otro evento',
-          start: current_date
-        }
-      ]
+      events: '/bookings'
     });
+    /*---end calendar2---*/
   });

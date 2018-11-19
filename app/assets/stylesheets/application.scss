@@ -18,10 +18,12 @@
  * ---- FullCalendar ----
  *= require fullcalendar/fullcalendar
  * ---- Theme ----
- *= require dashboard.css
+ *= require dashboard
  *= require charts-c3/c3-chart
  *= require scroll-bar/jquery.mCustomScrollbar
  *= require iconfonts/plugin
+ * ---- Personal Changes ----
+*= require custom.scss
  * ---- Rails ----
  *= require_tree .
  *= require_self
