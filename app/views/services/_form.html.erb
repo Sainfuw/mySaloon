@@ -25,7 +25,7 @@
 
         <div class="form-group">
           <%= form.label :status, "Estado", class: "form-label" %>
-          <%= form.select :status, @status, { selected: "enabled" } , { class: "form-control custom-select" } %>
+          <%= form.select :status, @status, { selected: service.status.present? ? service.status : "enabled" } , { class: "form-control custom-select" } %>
         </div>
       </div>
     </div>

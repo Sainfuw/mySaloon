@@ -1,8 +1,8 @@
 <div class="content-area">
 	<div class="page-header">
-		<h4 class="page-title">Informacion del Cliente</h4>
+		<h4 class="page-title">Informacion del Servicio</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item">Clientes</li>
+			<li class="breadcrumb-item">Servicios</li>
 			<li class="breadcrumb-item active" aria-current="page">Informacion</li>
 		</ol>
 	</div>
@@ -22,7 +22,7 @@
                     <td><strong>Precio :</strong><%= @service.price %></td>
                   </tr>
                   <tr>
-                    <td><strong>Estado :</strong><%= @service.status ? "Habilitado" : "Deshabilitado" %></td>
+                    <td><strong>Estado :</strong><%= @service.enabled? ? "Habilitado" : "Deshabilitado" %></td>
                   </tr>
                   <tr>
                     <td><strong>Creador :</strong><%= @service.author.name %></td>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :bookings
   resources :services
   resources :customers
+  resources :users
 
   root to: 'dashboard#index'
 end

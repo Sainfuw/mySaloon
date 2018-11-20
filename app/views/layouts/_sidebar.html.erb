@@ -10,45 +10,29 @@
             <span class="font-weight-semibold"><%= current_user.name + " " + current_user.lastname %></span></a>
             <br><span class="text-gray"><%= current_user_role %></span>
           </div>
-          <a href="" title="settings" class="user-button"><i class="fa fa-cogs"></i></a>
-          <a href="" title="mail" class="user-button"><i class="fa fa-envelope"></i></a>
-          <a href="<%= destroy_user_session_path %>" data-method="delete" title="logout" class="user-button"><i class="fa fa-sign-out"></i></a>
+          <a href="" title="Configuración" class="user-button"><i class="fa fa-cogs"></i></a>
+          <a href="<%= destroy_user_session_path %>" data-method="delete" title="Cerrar Sesión" class="user-button"><i class="fa fa-sign-out"></i></a>
         </div>
       </div>
 
       <% if current_user.admin? %>
         <li>
-          <a href="<%= root_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-tachometer mr-2"></i>Información</a>
+          <a href="<%= root_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-tachometer mr-2"></i>Panel</a>
         </li>
       <% end %>
       <% if can? :read, Customer %>
-        <li class="">
-          <a href="#clients" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
-            <i class="fa fa-male mr-2"></i> Clientes
-          </a>
-          <ul class="collapse list-unstyled" id="clients" data-parent="#accordion">
-            <li>
-              <%= link_to 'Listar Clientes', customers_path %>
-            </li>
-            <li>
-              <%= link_to 'Crear Cliente', new_customer_path %>
-            </li>
-          </ul>
+        <li>
+          <a href="<%= customers_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-users mr-2"></i> Clientes</a>
+        </li>
+      <% end %>
+      <% if can? :read, User %>
+        <li>
+          <a href="<%= users_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-male mr-2"></i> Usuarios</a>
         </li>
       <% end %>
       <% if can? :read, Service %>
-        <li class="">
-          <a href="#services" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
-            <i class="fa fa-th-large mr-2"></i>Servicios
-          </a>
-          <ul class="collapse list-unstyled" id="services" data-parent="#accordion">
-            <li>
-              <%= link_to 'Listar Servicios', services_path %>
-            </li>
-            <li>
-              <%= link_to 'Crear Servicio', new_service_path %>
-            </li>
-          </ul>
+        <li>
+          <a href="<%= services_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-th-large mr-2"></i>Servicios</a>
         </li>
       <% end %>
       <% if can? :read, Booking %>

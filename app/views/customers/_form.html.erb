@@ -27,13 +27,13 @@
         </div>
         <div class="form-group">
           <%= form.label :status, "Estado", class: "form-label" %>
-          <%= form.select :status, @status, { selected: "enabled" } , { class: "form-control custom-select" } %>
+          <%= form.select :status, @status, { selected: customer.status.present? ? customer.status : "enabled" } , { class: "form-control custom-select" } %>
         </div>
       </div>
     </div>
   </div>
   <div class="card-footer text-right">
-    <div class="d-flex">
+    <div class="actions d-flex">
       <%= form.submit "Guardar", class: "btn btn-primary ml-auto", style: "width: 200px" %>
     </div>
   </div>

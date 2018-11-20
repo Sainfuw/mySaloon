@@ -1,24 +1,24 @@
 <div class=" content-area">
-  <div class="page-header">
-    <h4 class="page-title">Tabla de Servicios</h4>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Servicios</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Listado</li>
-    </ol>
-  </div>
-  <div class="row">
-    <div class="col-md-12 col-lg-12">
+  <div class="row mt-5">
+    <div class="col-12">
       <div class="card">
+        <div class="card-header ">
+          <h3 class="card-title ">Listado de Servicios</h3>
+          <div class="card-options">
+            <%= link_to '<i class="fa fa-plus"></i> Crear Servicio'.html_safe, new_user_path, class: 'btn btn-sm btn-success' %>
+          </div>
+        </div>
         <div class="table-responsive">
-          <table class="table card-table table-vcenter text-nowrap">
+          <table class="table table-hover card-table table-striped table-vcenter table-outline text-nowrap">
             <thead>
               <tr>
-                <th class="py-3">ID</th>
-                <th class="py-3">Nombre</th>
-                <th class="py-3">Precio</th>
-                <th class="py-3">Estado</th>
-                <th class="py-3">Creador</th>
-                <th></th>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Creador</th>
+                <th scope="col">Editar Usuario</th>
+                <th scope="col">Información</th>
               </tr>
             </thead>
             <tbody>
@@ -27,13 +27,13 @@
                 <td><%= service.id %></td>
                 <td><%= service.name %></td>
                 <td><%= number_to_currency(service.price.to_i) %></td>
-                <td><%= service.status ? "Habilitado" : "Deshabilitado" %></td>
+                <td><%= service.enabled? ? "Habilitado" : "Deshabilitado" %></td>
                 <td><%= service.author.name %></td>
-                <td class="text-right">
-                  <%= link_to '<i class="fe fe-plus mr-2"></i>Mostrar'.html_safe, service, class: "btn btn-primary" %>
-                  <%= link_to '<i class="fe fe-settings mr-2"></i>Editar'.html_safe, edit_service_path(service), class: "btn btn-info" %>
-                  <%= link_to '<i class="fe fe-x mr-2"></i>Eliminar'.html_safe, service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-                </td>
+                <td>
+                    <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_service_path(service), class: "btn btn-sm btn-primary" %>
+                    <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, service, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-sm btn-danger" %>
+                  </td>
+                <td><%= link_to '<i class="fa fa-info-circle"></i> Detalles'.html_safe, service, class: "btn btn-sm btn-info" %></td>
               </tr>
             <% end %>
             </tbody>

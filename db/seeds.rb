@@ -43,6 +43,7 @@ User.destroy_all
     name: "Cliente#{x + 1}",
     email: "cliente#{x + 1}@gmail.com",
     phone: "2339434#{x + 1}",
+    status: 1,
     author: @admin
   )
   @service = Service.create(
