@@ -21,16 +21,15 @@
       <%= form.text_area :comment, class: 'form-control' %>
     </div>
 
-    <p><input id="start" type="text" class="time ui-timepicker-input" autocomplete="off"></p>
-
     <div class="form-group">
+      <%= hidden_field_tag(:date, @date) %>
       <%= form.label 'Inicio', class: 'form-control-label' %>
-      <%= form.time_select :start %>
+      <%= form.text_field :start, value: '', class: 'timePicker' %>
     </div>
 
     <div class="form-group">
       <%= form.label 'Termino', class: 'form-control-label' %>
-      <%= form.time_select :end %>
+      <%= form.text_field :end, value: '', class: 'timePicker' %>
     </div>
 
     <div class="form-group">
@@ -53,5 +52,3 @@
   <%= form.submit 'Guardar', class: 'btn btn-primary mt-4' %>
 </div>
   <% end %>
-
-<script>$('#scrollDefaultExample').timepicker();</script>

@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_date, only: [:new, :create]
   load_and_authorize_resource
 
   # GET /bookings
@@ -27,6 +28,10 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.author = current_user
+
+    @booking.start = @date.to_date.to_s + " " + @booking.start.to_s(:time)
+    @booking.end = @date.to_date.to_s + " " + @booking.end.to_s(:time)
+
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -72,8 +77,12 @@ class BookingsController < ApplicationController
       @booking = Booking.find(params[:id])
     end
 
+    def set_date
+      @date = params[:date]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:title, :comment, :start, :end, :status, :user_id, :author_id, :customer_id)
+      params.require(:booking).permit(:title, :comment, :date, :start, :end, :status, :user_id, :author_id, :customer_id)
     end
 end

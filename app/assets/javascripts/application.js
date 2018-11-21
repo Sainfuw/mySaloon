@@ -23,7 +23,7 @@
 // ---- FullCalendar ----
 //= require fullcalendar/moment.min
 //= require fullcalendar/fullcalendar.min
-//= require jquery-timepicker/jquery.timepicker
+//= require timepicker/jquery.timepicker
 // ---- Custom Settings ----
 //= require fullcalendar
 //= require scroll-bar/jquery.mCustomScrollbar.concat.min
