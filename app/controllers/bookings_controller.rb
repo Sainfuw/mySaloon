@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_date, only: [:new, :create]
+  load_and_authorize_resource
 
   # GET /bookings
   # GET /bookings.json
@@ -25,14 +27,20 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.author = current_user
+
+    @booking.start = @date.to_date.to_s + " " + @booking.start.to_s(:time)
+    @booking.end = @date.to_date.to_s + " " + @booking.end.to_s(:time)
 
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -44,9 +52,11 @@ class BookingsController < ApplicationController
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -67,8 +77,12 @@ class BookingsController < ApplicationController
       @booking = Booking.find(params[:id])
     end
 
+    def set_date
+      @date = params[:date]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:formula, :comment, :date, :start_time, :end_time, :status, :user_id, :author_id, :customer_id)
+      params.require(:booking).permit(:title, :comment, :date, :start, :end, :status, :user_id, :author_id, :customer_id)
     end
 end

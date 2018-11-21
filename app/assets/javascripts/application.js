@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// ---- Templates Base ----
 //= require vendors/jquery-3.2.1.min
 //= require vendors/bootstrap.bundle.min
 //= require vendors/jquery.sparkline.min
@@ -19,8 +20,15 @@
 //= require rating/jquery.rating-stars
 //= require fullside-menu/jquery.slimscroll.min
 //= require fullside-menu/waves.min
+// ---- FullCalendar ----
+//= require fullcalendar/moment.min
+//= require fullcalendar/fullcalendar.min
+//= require timepicker/jquery.timepicker
+// ---- Custom Settings ----
+//= require fullcalendar
 //= require scroll-bar/jquery.mCustomScrollbar.concat.min
 //= require custom
+// ---- Rails ----
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks

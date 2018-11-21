@@ -1,0 +1,52 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="form-group">
+          <%= form.label :name, "Nombre", class: "form-label"  %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Ingrese su nombre..." %>
+        </div>
+        <div class="form-group">
+          <%= form.label :lastname, "Apellido 1", class: "form-label"  %>
+          <%= form.text_field :lastname, class: "form-control", placeholder: "Primer Apellido..." %>
+        </div>
+        <div class="form-group">
+          <%= form.label :surname, "Apellido 2", class: "form-label"  %>
+          <%= form.text_field :surname, class: "form-control", placeholder: "Segundo Apellido..." %>
+        </div>
+        <div class="form-group">
+          <%= form.label :email, "Correo Electronico", class: "form-label"  %>
+          <%= form.text_field :email, class: "form-control", placeholder: "Correo Electronico..." %>
+        </div>
+        <div class="form-group">
+          <%= form.label :phone, "Telefono", class: "form-label"  %>
+          <%= form.text_field :phone, class: "form-control", placeholder: "Telefono..." %>
+        </div>
+        <div class="form-group">
+          <%= form.label :status, "Estado", class: "form-label"  %>
+          <%= form.select :status, @status, { selected: user.status.present? ? user.status : "enabled" }, { class: "form-control custom-select" } %>
+        </div>
+        <div class="form-group">
+          <%= form.label :role, "Rol", class: "form-label"  %>
+          <%= form.select :role, @roles, { selected: user.role.present? ? user.role : "professional" }, { class: "form-control custom-select" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-right">
+    <div class="actions d-flex">
+      <%= form.submit "Guardar", class: "btn btn-primary ml-auto", style: "width: 200px" %>
+    </div>
+  </div>
+<% end %>

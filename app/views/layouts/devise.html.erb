@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MySaloon</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+		<!-- Font Family-->
+		<link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body class="login-img">
+    <div class="page">
+			<div class="page-single">
+				<div class="container">
+					<div class="row">
+						<div class="col mx-auto">
+							<div class="text-center mb-6">
+								<img src="assets/images/brand/logo.png" class="" alt="">
+							</div>
+							<div class="row justify-content-center">
+								<div class="col-md-8">
+									<div class="card-group mb-0">
+										<div class="card p-4">
+											<div class="card-body">
+												<%= yield %>
+											</div>
+										</div>
+										<div class="card text-white bg-primary py-5 d-md-down-none login-transparent">
+											<div class="card-body text-center justify-content-center ">
+												<h2>Peluqueria</h2>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.ed ut perspiciatis unde omnis iste natus error sit voluptatem  </p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-<%= form_with(model: service, local: true) do |form| %>
+<%= form_with(model: service, local: true, class: "card") do |form| %>
   <% if service.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
@@ -10,28 +10,29 @@
       </ul>
     </div>
   <% end %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="form-group">
+          <%= form.label :name, "Nombre", class: "form-label" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Ingrese su nombre"%>
+        </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+        <div class="form-group">
+          <%= form.label :price, "Precio", class: "form-label" %>
+          <%= form.text_field :price, class: "form-control", placeholder: "Ingrese precio" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :status, "Estado", class: "form-label" %>
+          <%= form.select :status, @status, { selected: service.status.present? ? service.status : "enabled" } , { class: "form-control custom-select" } %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :author_id %>
-    <%= form.text_field :author_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="card-footer text-right">
+    <div class="d-flex">
+      <%= form.submit 'Guardar', class: "btn btn-primary ml-auto", style: "width: 200px" %>
+    </div>
   </div>
 <% end %>
