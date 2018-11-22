@@ -1,17 +1,12 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
-  before_action :set_date, only: [:new, :create]
+  before_action :set_booking, only: [:edit, :update, :destroy]
+  before_action :set_date, only: [:new, :create, :edit, :update]
   load_and_authorize_resource
 
   # GET /bookings
   # GET /bookings.json
   def index
     @bookings = Booking.all
-  end
-
-  # GET /bookings/1
-  # GET /bookings/1.json
-  def show
   end
 
   # GET /bookings/new
@@ -26,11 +21,9 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new()
+    @booking = set_params(@booking, @date)
     @booking.author = current_user
-
-    @booking.start = @date.to_date.to_s + " " + @booking.start.to_s(:time)
-    @booking.end = @date.to_date.to_s + " " + @booking.end.to_s(:time)
 
     respond_to do |format|
       if @booking.save
@@ -48,8 +41,9 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    @booking = set_params(@booking, @date)
     respond_to do |format|
-      if @booking.update(booking_params)
+      if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
         format.js
@@ -81,8 +75,22 @@ class BookingsController < ApplicationController
       @date = params[:date]
     end
 
+    def set_params(booking, date)
+      booking.title = params[:booking][:title]
+      booking.comment = params[:booking][:comment]
+      if booking.new_record?
+        date = date.to_date.change(day:date.to_date.day.to_i + 1)
+      end
+      booking.start = date.to_date.to_s + " " + params[:booking][:start]
+      booking.end = date.to_date.to_s + " " + params[:booking][:end]
+      booking.status = params[:booking][:status]
+      booking.user_id = params[:booking][:user_id].present? ? params[:booking][:user_id] : booking.user_id
+      booking.customer_id = params[:booking][:customer_id].present? ? params[:booking][:customer_id] : booking.customer_id
+      booking
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:title, :comment, :date, :start, :end, :status, :user_id, :author_id, :customer_id)
+      params.require(:booking).permit(:title, :comment, :start, :end, :status, :user_id, :customer_id)
     end
 end

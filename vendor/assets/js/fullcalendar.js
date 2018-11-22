@@ -19,6 +19,7 @@ $(document).on('turbolinks:load', function() {
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     },
+    locale: 'es',
     defaultDate: current_date,
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
@@ -35,7 +36,8 @@ $(document).on('turbolinks:load', function() {
       $.ajax({
         url: '/bookings/' + event.id + '/edit',
         type: 'GET',
-        dataType: 'script'
+        dataType: 'script',
+        data: { date: event.start._d }
       })
       if (event.url) { return false }
     },
@@ -44,26 +46,4 @@ $(document).on('turbolinks:load', function() {
     events: '/bookings'
   });
   /*---end Selectable fullcalendar---*/
-
-  /*---calendar2---*/
-  $('#calendar2').fullCalendar({
-    header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'listDay,listWeek,month'
-    },
-
-    views: {
-      listDay: { buttonText: 'list day' },
-      listWeek: { buttonText: 'list week' }
-    },
-
-    defaultView: 'listWeek',
-    defaultDate: current_date,
-    navLinks: true, // can click day/week names to navigate views
-    editable: true,
-    eventLimit: true, // allow "more" link when too many events
-    events: '/bookings'
-  });
-  /*---end calendar2---*/
 });

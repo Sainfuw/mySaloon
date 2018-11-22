@@ -17,7 +17,11 @@
                 <th scope="col">Precio</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Creador</th>
-                <th scope="col">Editar Usuario</th>
+                <% if can? :update, Service or can? :destroy, Service %>
+                  <th scope="col">Editar Usuario</th>
+                <% else %>
+                  <th scope="col"></th>
+                <% end %>
                 <th scope="col">Información</th>
               </tr>
             </thead>
@@ -30,9 +34,9 @@
                 <td><%= service.enabled? ? "Habilitado" : "Deshabilitado" %></td>
                 <td><%= service.author.name %></td>
                 <td>
-                    <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_service_path(service), class: "btn btn-sm btn-primary" %>
-                    <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, service, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-sm btn-danger" %>
-                  </td>
+                  <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_service_path(service), class: "btn btn-sm btn-primary" if can? :update, service %>
+                  <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, service, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-sm btn-danger" if can? :destroy, service %>
+                </td>
                 <td><%= link_to '<i class="fa fa-info-circle"></i> Detalles'.html_safe, service, class: "btn btn-sm btn-info" %></td>
               </tr>
             <% end %>

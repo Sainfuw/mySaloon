@@ -21,8 +21,9 @@
 //= require fullside-menu/jquery.slimscroll.min
 //= require fullside-menu/waves.min
 // ---- FullCalendar ----
-//= require fullcalendar/moment.min
-//= require fullcalendar/fullcalendar.min
+//= require fullcalendar/moment
+//= require fullcalendar/fullcalendar
+//= require fullcalendar/locale/es
 //= require timepicker/jquery.timepicker
 // ---- Custom Settings ----
 //= require fullcalendar

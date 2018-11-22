@@ -8,11 +8,13 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.assistant?
-      can [:read, :edit, :update], :all 
+      can [:manage], Customer
+      can [:manage], Service
+      can [:manage], Booking
     elsif user.professional?
-      can :read, Booking
-    else
-      # no puede hacer nada
+      can [:read, :update], Booking, user: user
+      can [:create], Booking
+      can [:create, :read], Service
     end
   end
 end

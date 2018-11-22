@@ -41,6 +41,10 @@
           <%= form.label :role, "Rol", class: "form-label"  %>
           <%= form.select :role, @roles, { selected: user.role.present? ? user.role : "professional" }, { class: "form-control custom-select" } %>
         </div>
+        <div class="form-group">
+          <%= form.label :password, "Contraseña", class: "form-label"  %>
+          <%= form.password_field :password, class: "form-control", placeholder: "Ingrese Contraseña..." if user.new_record? %>
+        </div>
       </div>
     </div>
   </div>

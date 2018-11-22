@@ -8,7 +8,7 @@
           <div class="mb-2">
             <a href="" class="" data-toggle="" aria-haspopup="true" aria-expanded="false"> 
             <span class="font-weight-semibold"><%= current_user.name + " " + current_user.lastname %></span></a>
-            <br><span class="text-gray"><%= current_user_role %></span>
+            <br><span class="text-gray"><%= user_role %></span>
           </div>
           <a href="" title="Configuración" class="user-button"><i class="fa fa-cogs"></i></a>
           <a href="<%= destroy_user_session_path %>" data-method="delete" title="Cerrar Sesión" class="user-button"><i class="fa fa-sign-out"></i></a>
@@ -17,7 +17,7 @@
 
       <% if current_user.admin? %>
         <li>
-          <a href="<%= root_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-tachometer mr-2"></i>Panel</a>
+          <a href="<%= root_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-tachometer mr-2"></i> Panel</a>
         </li>
       <% end %>
       <% if can? :read, Customer %>
@@ -32,17 +32,17 @@
       <% end %>
       <% if can? :read, Service %>
         <li>
-          <a href="<%= services_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-th-large mr-2"></i>Servicios</a>
+          <a href="<%= services_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-th-large mr-2"></i> Servicios</a>
         </li>
       <% end %>
       <% if can? :read, Booking %>
         <li>
-          <a href="<%= bookings_path %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-shopping-cart mr-2"></i>Reservas</a>
+          <a href="<%= bookings_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-shopping-cart mr-2"></i> Reservas</a>
         </li>
       <% end %>
       <% if current_user.admin? || current_user.assistant? %>
         <li>
-          <a href="widgets.html" class=" wave-effect waves-effect waves-button"><i class="fa fa-dollar mr-2"></i>Ventas realizadas</a>
+          <a href="#" class=" wave-effect waves-effect waves-button"><i class="fa fa-dollar mr-2"></i> Ventas realizadas</a>
         </li>
       <% end %>
     </ul>
