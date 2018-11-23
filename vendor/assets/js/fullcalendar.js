@@ -1,6 +1,4 @@
-$(document).on('turbolinks:load', function() {
-  var current_date = moment().format("YYYY-MM-DD");
-
+$(document).on('turbolinks:load', function() {  
   /*---timepicker with focusin---*/
   $('#modalInput').on('focusin', '.timePicker', function() {
     $(this).timepicker({
@@ -11,8 +9,9 @@ $(document).on('turbolinks:load', function() {
     });
   });
   /*---end timepicker---*/
-
+  
   /*---Selectable fullcalendar---*/
+  var current_date = moment().format("YYYY-MM-DD");
 	$('#calendar').fullCalendar({
     header: {
       left: 'prev,next today',
@@ -29,7 +28,9 @@ $(document).on('turbolinks:load', function() {
         url: '/bookings/new',
         type: 'GET',
         dataType: 'script',
-        data: { date: event._d }
+        data: {
+          date: event.format(),
+        }
       })
     },
     eventClick: function (event, jsEvent, view) {
@@ -37,9 +38,26 @@ $(document).on('turbolinks:load', function() {
         url: '/bookings/' + event.id + '/edit',
         type: 'GET',
         dataType: 'script',
-        data: { date: event.start._d }
+        data: {
+          date: event.start.format(),
+        }
       })
       if (event.url) { return false }
+    },
+    eventDrop: function(event, delta, revertFunc) {
+      if (confirm("Quiere cambiar el evento " + event.title + " al dia " + event.start.format("DD-MM-YYYY") + "?")) {
+        $.ajax({
+          url: '/bookings/' + event.id,
+          type: 'PATCH',
+          dataType: 'script',
+          data: {
+            booking: { start: event.start.format() },
+            authenticity_token: $("#calendar").data("token")
+          }
+        })
+      } else {
+        revertFunc();
+      }
     },
     editable: true,
     eventLimit: true, // allow "more" link when too many events

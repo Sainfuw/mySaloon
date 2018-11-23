@@ -7,4 +7,14 @@ class Booking < ApplicationRecord
   has_many :billings, through: :booking_services
 
   enum status: [ :nulled, :active, :completed ]
+
+  def color
+    if self.active?
+      return "#3AC4FE"
+    elsif self.completed?
+      return "#9F78FF"
+    else
+      return "#C3C3C3"
+    end
+  end
 end

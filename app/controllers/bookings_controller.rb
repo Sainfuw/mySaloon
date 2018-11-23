@@ -6,7 +6,11 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    if current_user.professional?
+      @bookings = @bookings.where(user: current_user)
+    else
+      @bookings = Booking.all
+    end
   end
 
   # GET /bookings/new
@@ -41,7 +45,11 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
-    @booking = set_params(@booking, @date)
+    if params[:booking][:title].present? or params[:booking][:end].present?
+      @booking = set_params(@booking, @date)
+    else
+      @booking.start = params[:booking][:start]
+    end
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
