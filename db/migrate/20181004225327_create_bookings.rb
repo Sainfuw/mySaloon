@@ -3,6 +3,7 @@ class CreateBookings < ActiveRecord::Migration[5.2]
     create_table :bookings do |t|
       t.text :title
       t.text :comment
+      t.datetime :date
       t.datetime :start
       t.datetime :end
       t.integer :status

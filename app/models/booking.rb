@@ -8,6 +8,8 @@ class Booking < ApplicationRecord
 
   enum status: [ :nulled, :active, :completed ]
 
+  before_save :set_date
+
   def color
     if self.active?
       return "#3AC4FE"
@@ -16,5 +18,10 @@ class Booking < ApplicationRecord
     else
       return "#C3C3C3"
     end
+  end
+
+  def set_date
+    self.start = self.date.to_date.to_s + " " + self.start.to_s(:time)
+    self.end = self.date.to_date.to_s + " " + self.end.to_s(:time)
   end
 end

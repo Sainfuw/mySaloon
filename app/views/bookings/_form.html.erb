@@ -23,8 +23,8 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-6">        
-        <%= hidden_field_tag(:date, @date) %>
+      <div class="col-6">
+        <%= form.hidden_field :date, value: params[:booking][:date] %>
         <%= form.label 'Inicio', class: 'form-control-label' %>
         <%= form.text_field :start, value: booking.start.present? ? booking.start.strftime("%I:%M%p").downcase : "6:00am", class: 'timePicker text-center form-control' %>
       </div>

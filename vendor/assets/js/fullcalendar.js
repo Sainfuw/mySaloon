@@ -29,7 +29,8 @@ $(document).on('turbolinks:load', function() {
         type: 'GET',
         dataType: 'script',
         data: {
-          date: event.format(),
+          booking: { date: event.format() },
+          authenticity_token: $("#calendar").data("token")
         }
       })
     },
@@ -39,7 +40,8 @@ $(document).on('turbolinks:load', function() {
         type: 'GET',
         dataType: 'script',
         data: {
-          date: event.start.format(),
+          booking: { date: event.start.format() },
+          authenticity_token: $("#calendar").data("token")
         }
       })
       if (event.url) { return false }
@@ -51,7 +53,7 @@ $(document).on('turbolinks:load', function() {
           type: 'PATCH',
           dataType: 'script',
           data: {
-            booking: { start: event.start.format() },
+            booking: { date: event.start.format() },
             authenticity_token: $("#calendar").data("token")
           }
         })

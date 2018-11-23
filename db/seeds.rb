@@ -54,11 +54,13 @@ User.destroy_all
   )
   2.times do |x|
     start_at = Random.rand(15).days.ago + 5.days
+    time = rand(12) + 6
     @booking = Booking.create(
       title: Faker::Overwatch.hero,
       comment: Faker::Overwatch.quote,
-      start: start_at,
-      end: start_at,
+      date: start_at.change({ hour: 0, min: 0, sec: 0 }),
+      start: start_at.change({ hour: time, min: 30, sec: 0 }),
+      end: start_at.change({ hour: time + 2, min: 30, sec: 0 }),
       status: rand(3),
       user: @professional,
       author: @admin,
