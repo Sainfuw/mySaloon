@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/_THEME
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -20,7 +21,7 @@
 /node_modules
 /yarn-error.log
 
-/public/assets
+# /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
