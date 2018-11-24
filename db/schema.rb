@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_10_04_230431) do
   create_table "bookings", force: :cascade do |t|
     t.text "title"
     t.text "comment"
+    t.datetime "date"
     t.datetime "start"
     t.datetime "end"
     t.integer "status"

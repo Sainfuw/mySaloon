@@ -1,17 +1,15 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
-  before_action :set_date, only: [:new, :create]
+  before_action :set_booking, only: [:edit, :update, :destroy]
   load_and_authorize_resource
 
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
-  end
-
-  # GET /bookings/1
-  # GET /bookings/1.json
-  def show
+    if current_user.professional?
+      @bookings = @bookings.where(user: current_user)
+    else
+      @bookings = Booking.all
+    end
   end
 
   # GET /bookings/new
@@ -29,9 +27,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.author = current_user
 
-    @booking.start = @date.to_date.to_s + " " + @booking.start.to_s(:time)
-    @booking.end = @date.to_date.to_s + " " + @booking.end.to_s(:time)
-
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -48,6 +43,7 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    @booking.date = params[:booking][:date]
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
@@ -77,12 +73,8 @@ class BookingsController < ApplicationController
       @booking = Booking.find(params[:id])
     end
 
-    def set_date
-      @date = params[:date]
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:title, :comment, :date, :start, :end, :status, :user_id, :author_id, :customer_id)
+      params.require(:booking).permit(:title, :comment, :date, :start, :end, :status, :user_id, :customer_id)
     end
 end

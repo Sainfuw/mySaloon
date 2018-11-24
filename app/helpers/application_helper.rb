@@ -1,10 +1,10 @@
 module ApplicationHelper
-  def current_user_role
-    if current_user.admin? 
+  def user_role(user = current_user)
+    if user.admin? 
       return 'Administrador'
-    elsif current_user.assistant? 
+    elsif user.assistant? 
       return 'Asistente'
-    else current_user.professional? 
+    else user.professional? 
       return 'Profesional'
     end
   end

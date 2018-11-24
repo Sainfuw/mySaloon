@@ -3,4 +3,8 @@ class Customer < ApplicationRecord
   has_many :bookings
 
   enum status: [ :disabled, :enabled ]
+
+  def self.name_id
+    Customer.pluck(:name, :id)
+  end
 end

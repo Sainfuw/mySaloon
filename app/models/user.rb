@@ -9,4 +9,8 @@ class User < ApplicationRecord
 
   enum role: [ :professional, :assistant, :admin ]
   enum status: [ :disabled, :enabled ]
+
+  def self.get_professionals
+    User.where(role: "professional").pluck(:name, :id)
+  end
 end
