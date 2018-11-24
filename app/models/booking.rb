@@ -1,10 +1,27 @@
 class Booking < ApplicationRecord
   belongs_to :user
-  belongs_to :author
+  belongs_to :author, class_name: 'User', primary_key: :id, foreign_key: :author_id
   belongs_to :customer
   has_many :booking_services
   has_many :services, through: :booking_services
   has_many :billings, through: :booking_services
 
-  enum role: { disable: 0, enable: 1 }
+  enum status: [ :nulled, :active, :completed ]
+
+  before_save :set_date
+
+  def color
+    if self.active?
+      return "#3AC4FE"
+    elsif self.completed?
+      return "#9F78FF"
+    else
+      return "#C3C3C3"
+    end
+  end
+
+  def set_date
+    self.start = self.date.to_date.to_s + " " + self.start.to_s(:time)
+    self.end = self.date.to_date.to_s + " " + self.end.to_s(:time)
+  end
 end

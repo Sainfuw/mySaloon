@@ -1,0 +1,49 @@
+<div class="content-area">
+	<div class="page-header">
+		<h4 class="page-title">Informacion del Cliente</h4>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Clientes</li>
+			<li class="breadcrumb-item active" aria-current="page">Informacion</li>
+		</ol>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+      <div class="card-body">
+        <div class=" " id="profile-log-switch">
+          <div class="fade show active ">
+            <div class="table-responsive border ">
+              <table class="table row table-borderless w-100 m-0 ">
+                <tbody class="col-6 p-0">
+                  <tr>
+                    <td><strong>Nombre: </strong><%= @user.name %> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Apellido 1: </strong><%= @user.lastname %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Apellido 2: </strong><%= @user.surname %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Telefono: </strong><%= @user.phone %></td>
+                  </tr>
+                </tbody>
+                <tbody class="col-6 p-0">
+                  <tr>
+                    <td><strong>Correo Electronico: </strong><%= @user.email %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Estado: </strong><%= @user.status ? "Habilitado" : "Deshabilitado" %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Rol: </strong><%= @user.role %> </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

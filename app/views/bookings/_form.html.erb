@@ -1,4 +1,4 @@
-<%= form_with(model: booking, local: true) do |form| %>
+<%= form_with(model: booking) do |form| %>
   <% if booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -11,52 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :formula %>
-    <%= form.text_area :formula %>
+  <div class="form-group">
+    <%= form.label 'Formula', class: 'form-control-label' %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_area :comment %>
+  <div class="form-group">
+    <%= form.label 'Comentario', class: 'form-control-label' %>
+    <%= form.text_area :comment, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+        <%= form.hidden_field :date, value: params[:booking][:date] %>
+        <%= form.label 'Inicio', class: 'form-control-label' %>
+        <%= form.text_field :start, value: booking.start.present? ? booking.start.strftime("%I:%M%p").downcase : "6:00am", class: 'timePicker text-center form-control' %>
+      </div>
+      <div class="col-6">
+        <%= form.label 'Termino', class: 'form-control-label' %>
+        <%= form.text_field :end, value: booking.end.present? ? booking.end.strftime("%I:%M%p").downcase : "6:30am", class: 'timePicker text-center form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.time_select :start_time %>
+  <div class="form-group">
+    <%= form.label 'Estado', class: 'form-control-label' %>
+    <%= form.select :status, Booking.statuses.keys.map { |s| [s.titleize,s] }, { selected: booking.status.present? ? booking.status : "active" } , { class: "form-control custom-select" } %>
   </div>
 
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.time_select :end_time %>
+  <div class="form-group">
+    <%= form.label 'Usuario', class: 'form-control-label' %>
+    <%= form.select :user_id, User.get_professionals, { selected: booking.user_id.present? ? booking.user_id : 1 } , { class: "form-control custom-select" } %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
+  <div class="form-group">
+    <%= form.label 'Cliente', class: 'form-control-label' %>
+    <%= form.select :customer_id, Customer.name_id, { selected: booking.customer_id.present? ? booking.customer_id : 1 } , { class: "form-control custom-select" } %>
   </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :author_id %>
-    <%= form.text_field :author_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :customer_id %>
-    <%= form.text_field :customer_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
+<div class="actions modal-footer">
+  <%= button_tag type: 'submit', class: "btn btn-primary btn-sm mt-4" do %>
+    <i class="fa fa-edit"></i> Guardar
+  <% end %>
+  <%= button_tag type: 'button', class: "btn btn-secondary btn-sm mt-4", data: { dismiss: "modal" } do %>
+    <i class="fa fa-times"></i> Cerrar
+  <% end %>
+  <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, booking, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-sm btn-danger mt-4" if !booking.new_record? %>
+</div>
 <% end %>

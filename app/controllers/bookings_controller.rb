@@ -1,15 +1,15 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
-  end
-
-  # GET /bookings/1
-  # GET /bookings/1.json
-  def show
+    if current_user.professional?
+      @bookings = @bookings.where(user: current_user)
+    else
+      @bookings = Booking.all
+    end
   end
 
   # GET /bookings/new
@@ -25,14 +25,17 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.author = current_user
 
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -40,13 +43,16 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    @booking.date = params[:booking][:date]
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -69,6 +75,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:formula, :comment, :date, :start_time, :end_time, :status, :user_id, :author_id, :customer_id)
+      params.require(:booking).permit(:title, :comment, :date, :start, :end, :status, :user_id, :customer_id)
     end
 end

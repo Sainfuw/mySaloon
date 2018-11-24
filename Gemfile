@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'cancancan'
+gem 'faker'
 # gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 group :development do
   gem 'better_errors'

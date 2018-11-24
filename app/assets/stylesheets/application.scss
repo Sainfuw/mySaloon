@@ -10,15 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ * ---- Page Base ----
  *= require bootstrap/dist/css/bootstrap
  *= require fonts/font-awesome.min
  *= require fullside-menu/css/style
  *= require fullside-menu/waves.min
- *= require dashboard.css
+ * ---- FullCalendar ----
+ *= require fullcalendar/fullcalendar
+ *= require timepicker/jquery.timepicker
+ * ---- Theme ----
+ *= require dashboard
  *= require charts-c3/c3-chart
  *= require scroll-bar/jquery.mCustomScrollbar
  *= require iconfonts/plugin
+ * ---- Personal Changes ----
+*= require custom.scss
+ * ---- Rails ----
  *= require_tree .
  *= require_self
  */
- .jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}
