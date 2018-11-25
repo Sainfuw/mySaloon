@@ -36,8 +36,8 @@
                   <td><%= user.enabled? ? "Habilitado" : "Deshabilitado" %></td>
                   <td><%= user_role(user) %></td>
                   <td>
-                    <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_user_path(user), class: "btn btn-sm btn-primary" %>
-                    <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, user, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-sm btn-danger" %>
+                    <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_user_path(user), class: "btn btn-sm btn-primary" if can? :update, user %>
+                    <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, user, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-sm btn-danger" if can? :destroy, user %>
                   </td>
                   <td><%= link_to '<i class="fa fa-info-circle"></i> Detalles'.html_safe, user, class: "btn btn-sm btn-info" %></td>
                 </tr>
