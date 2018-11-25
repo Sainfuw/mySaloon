@@ -41041,10 +41041,14 @@ yx-axis
 /* MaterialDesignIcons.com */
 @font-face {
   font-family: "Material Design Icons";
-  src: url("fonts/materialdesignicons/materialdesignicons-webfont.eot?v=2.0.46");
-  src: url("fonts/materialdesignicons/materialdesignicons-webfont.eot?#iefix&v=2.0.46") format("embedded-opentype"), url("fonts/materialdesignicons/materialdesignicons-webfont.woff2?v=2.0.46") format("woff2"), url("fonts/materialdesignicons/materialdesignicons-webfont.woff?v=2.0.46") format("woff"), url("fonts/materialdesignicons/materialdesignicons-webfont.ttf?v=2.0.46") format("truetype"), url("fonts/materialdesignicons/materialdesignicons-webfont.svg?v=2.0.46#materialdesigniconsregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
+  src:  url('/assets/fonts/materialdesignicons-webfont-a05212d141dc70732bfe778d690e839d6d9b64103fdf27c8016c1f6fa9cb7ac0.eot?v=2.0.46');
+  src:  url('/assets/fonts/materialdesignicons-webfont-a05212d141dc70732bfe778d690e839d6d9b64103fdf27c8016c1f6fa9cb7ac0.eot?#iefix&v=2.0.46') format("embedded-opentype"), 
+        url('/assets/fonts/materialdesignicons-webfont-4d60cf558c0cab6cfdd40aab9f02cdd6ea571eb5919057473d970e9af55064a6.woff2?v=2.0.46') format("woff2"), 
+        url('fonts/materialdesignicons-webfont.woff?v=2.0.46') format("woff"), 
+        url('fonts/materialdesignicons-webfont.ttf?v=2.0.46') format("truetype"), 
+        url('fonts/materialdesignicons-webfont.svg?v=2.0.46#materialdesigniconsregular') format("svg");
+        font-weight: normal;
+        font-style: normal;
 }
 
 .mdi {
