@@ -25,6 +25,8 @@
 //= require fullcalendar/fullcalendar
 //= require fullcalendar/locale/es
 //= require timepicker/jquery.timepicker
+// ---- BootstrapSelect ----
+//= require bootstrap-select/dist/js/bootstrap-select
 // ---- Custom Settings ----
 //= require fullcalendar
 //= require scroll-bar/jquery.mCustomScrollbar.concat.min

@@ -26,9 +26,17 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.author = current_user
+    @services_ids = params[:booking][:services]
 
     respond_to do |format|
       if @booking.save
+
+        @services_ids.each do |service_id|
+          if !service_id.empty?
+            BookingService.create(booking: @booking, service_id: service_id)
+          end
+        end
+
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
         format.js
@@ -44,8 +52,18 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1.json
   def update
     @booking.date = params[:booking][:date]
+    @services_ids = params[:booking][:services]
+
     respond_to do |format|
       if @booking.update(booking_params)
+
+        @booking.booking_services.destroy_all
+        @services_ids.each do |service_id|
+          if !service_id.empty?
+            BookingService.create(booking: @booking, service_id: service_id)
+          end
+        end
+
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
         format.js

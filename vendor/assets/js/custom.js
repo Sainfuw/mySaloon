@@ -11,8 +11,9 @@ $(document).on('turbolinks:load', function () {
 	}
 	sp.addEventListener('click', changeClass);
 	shclose.addEventListener('click', closesearch);
-	
-	$('#sidebarCollapse').on('click', function() {
+
+	$(document).on('click', '#sidebarCollapse', function (e) {
+		e.preventDefault();
 		$('#sidebar').toggleClass('active');
 	});
 	Waves.init();
@@ -95,6 +96,7 @@ $(document).on('turbolinks:load', function () {
 
 	// ______________ BACK TO TOP BUTTON
 
+	$('#back-to-top').fadeOut(0);
 	$(window).on("scroll", function(e) {
 		if ($(this).scrollTop() > 0) {
 			$('#back-to-top').fadeIn('slow');

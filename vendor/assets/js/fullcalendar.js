@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {  
+
   /*---timepicker with focusin---*/
   $('#modalInput').on('focusin', '.timePicker', function() {
     $(this).timepicker({
