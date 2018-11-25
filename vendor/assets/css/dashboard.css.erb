@@ -3020,7 +3020,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 #global-loader {
     position:fixed;
     z-index:50000;
-    background: url(loader.svg) no-repeat 50% 50% rgba(255, 255, 255);
+    background: url(<%= asset_path('loader.svg') %>) no-repeat 50% 50% rgba(255, 255, 255);
     left:0;
     top:0;
     right:0;
@@ -18551,10 +18551,11 @@ svg {
 
 @font-face {
 	font-family: "feather";
-	src: url("feather/feather-webfont.eot?t=1501841394106");
-	/* IE9*/
-	src: url("feather/feather-webfont.eot?t=1501841394106#iefix") format("embedded-opentype"), url("feather/feather-webfont.woff?t=1501841394106") format("woff"), url("feather/feather-webfont.ttf?t=1501841394106") format("truetype"), url("feather/feather-webfont.svg?t=1501841394106#feather") format("svg");
-	/* iOS 4.1- */
+	src: 	url('<%= asset_path("feather/feather-webfont.eot") + "?t=1501841394106" %>');
+	src: 	url('<%= asset_path("feather/feather-webfont.eot") + "?t=1501841394106#iefix" %>') format("embedded-opentype"), 
+				url('<%= asset_path("feather/feather-webfont.woff") + "?t=1501841394106" %>') format("woff"), 
+				url('<%= asset_path("feather/feather-webfont.ttf") + "?t=1501841394106" %>') format("truetype"), 
+				url('<%= asset_path("feather/feather-webfont.svg") + "?t=1501841394106#feather" %>') format("svg");
 }
 .fe {
 	font-family: 'feather' !important;
@@ -19358,8 +19359,12 @@ svg {
 }
 @font-face {
 	font-family: 'Glyphicons Halflings';
-	src: url('../fonts/glyphicons-halflings-regular.eot');
-	src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+	src: 	url('<%= asset_path("fonts/glyphicons-halflings-regular.eot") %>');
+	src: 	url('<%= asset_path("fonts/glyphicons-halflings-regular.eot") + "?#iefix" %>') format('embedded-opentype'), 
+				url('<%= asset_path("fonts/glyphicons-halflings-regular.woff2") %>') format('woff2'), 
+				url('<%= asset_path("fonts/glyphicons-halflings-regular.woff") %>') format('woff'), 
+				url('<%= asset_path("fonts/glyphicons-halflings-regular.ttf") %>') format('truetype'), 
+				url('<%= asset_path("fonts/glyphicons-halflings-regular.svg") + "#glyphicons_halflingsregular" %>') format('svg');
 }
 .glyphicon {
 	position: relative;
