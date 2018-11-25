@@ -5,7 +5,7 @@
         <div class="app-header1 header py-1 d-flex">
           <div class="container-fluid">
             <div class="d-flex">
-              <a class="header-brand" href="index.html">
+              <a class="header-brand" href="<%= root_path %>">
                 <img src="<%= asset_path('logo-saloon.png') %>" class="header-brand-img" alt="Plight logo">
               </a>
               <div class="menu-toggle-button">
@@ -84,16 +84,13 @@
                       <span class="text-center user-semi-title text-dark"><%= user_role %></span>
                       <div class="dropdown-divider"></div>
                     </div>
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="<%= user_path(current_user) %>">
                       <i class="dropdown-icon mdi mdi-account-outline "></i> Perfil
                     </a>
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="<%= edit_user_registration_path %>">
                       <i class="dropdown-icon  mdi mdi-settings"></i> Configuración
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="">
-                      <i class="dropdown-icon mdi mdi-compass-outline"></i> Necesitas ayuda??
-                    </a>
                     <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="delete">
                       <i class="dropdown-icon mdi  mdi-logout-variant"></i> Cerrar Sesión
                     </a>

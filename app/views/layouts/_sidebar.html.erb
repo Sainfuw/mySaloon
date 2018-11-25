@@ -10,7 +10,7 @@
             <span class="font-weight-semibold"><%= current_user.name + " " + current_user.lastname %></span></a>
             <br><span class="text-gray"><%= user_role %></span>
           </div>
-          <a href="" title="Configuración" class="user-button"><i class="fa fa-cogs"></i></a>
+          <a href="<%= edit_user_registration_path %>" title="Configuración" class="user-button"><i class="fa fa-cogs"></i></a>
           <a href="<%= destroy_user_session_path %>" data-method="delete" title="Cerrar Sesión" class="user-button"><i class="fa fa-sign-out"></i></a>
         </div>
       </div>
@@ -25,7 +25,7 @@
           <a href="<%= customers_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-users mr-2"></i> Clientes</a>
         </li>
       <% end %>
-      <% if can? :read, User %>
+      <% if can? :manage, User %>
         <li>
           <a href="<%= users_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-male mr-2"></i> Usuarios</a>
         </li>

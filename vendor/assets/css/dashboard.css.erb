@@ -10430,7 +10430,7 @@ strong, b {
 	font-weight: 600;
 }
 p, ul, ol, blockquote {
-	margin-bottom: 1em;
+	margin-bottom: -1em;
 }
 blockquote {
 	font-style: italic;
@@ -13426,8 +13426,11 @@ a.icon:hover {
 	margin: 0 -30px;
 }
 .login-img {
-	background: url('login.jpg');
-	background-size: cover;
+	background: url('<%= asset_path("login.jpg") %>') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .construction-img {
 	background: url('construction.jpg');
@@ -13468,7 +13471,7 @@ a.icon:hover {
 	background-size: cover;
 }
 .login-transparent{
-	background: url('../images/photos/22.jpg');
+	background: url('<%= asset_path('photos/21.jpg') %>');
 	background-size: cover;
 }
 .login-transparent:before{
