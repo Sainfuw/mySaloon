@@ -25,6 +25,9 @@
 //= require fullcalendar/fullcalendar
 //= require fullcalendar/locale/es
 //= require timepicker/jquery.timepicker
+// ---- eChart ----
+//= require echarts/echarts.js
+//= require echartcustom.js
 // ---- BootstrapSelect ----
 //= require bootstrap-select/dist/js/bootstrap-select
 // ---- Custom Settings ----

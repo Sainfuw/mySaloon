@@ -5,4 +5,6 @@ class Service < ApplicationRecord
   has_many :billings, through: :booking_services
 
   enum status: [ :disabled, :enabled ]
+
+  scope :actives, -> { where(status: 'enabled') }
 end
