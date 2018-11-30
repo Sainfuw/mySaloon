@@ -35,11 +35,11 @@
         </div>
         <div class="form-group">
           <%= form.label :status, "Estado", class: "form-label"  %>
-          <%= form.select :status, @status, { selected: user.status.present? ? user.status : "enabled" }, { class: "form-control custom-select" } %>
+          <%= form.select :status, User.statuses.keys.collect { |status| [User.human_enum_name(:status, status), status] }, { selected: user.status.present? ? user.status : "enabled" }, { class: "form-control custom-select" } %>
         </div>
         <div class="form-group">
           <%= form.label :role, "Rol", class: "form-label"  %>
-          <%= form.select :role, @roles, { selected: user.role.present? ? user.role : "professional" }, { class: "form-control custom-select" } %>
+          <%= form.select :role, User.roles.keys.collect { |role| [User.human_enum_name(:role, role), role] }, { selected: user.role.present? ? user.role : "professional" }, { class: "form-control custom-select" } %>
         </div>
         <div class="form-group">
           <%= form.label :password, "Contraseña", class: "form-label"  %>

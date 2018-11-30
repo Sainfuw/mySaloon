@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_boxes, only: [:new, :edit]
   load_and_authorize_resource
 
   # GET /users
@@ -69,11 +68,6 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-    end
-
-    def check_boxes
-      @status = [["Deshabilitado", "disabled"], ["Habilitado", "enabled"]]
-      @roles = [["Profesional", "professional"], ["Asistente", "assistant"], ["Administrador", "admin"]]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

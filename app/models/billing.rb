@@ -3,4 +3,8 @@ class Billing < ApplicationRecord
   has_many :booking_services
   has_many :services, through: :booking_services
   has_many :bookings, through: :booking_services
+
+  validates :payment_method, presence: true
+  validates :amount, presence: true
+  validates :user_id, presence: true
 end

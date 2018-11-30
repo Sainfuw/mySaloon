@@ -1,22 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  formula: MyText
+  title: MyText
   comment: MyText
   date: 2018-10-04
-  start_time: 2018-10-04 19:53:27
-  end_time: 2018-10-04 19:53:27
+  start: 2018-10-04 19:53:27
+  end: 2018-10-04 19:53:27
   status: 1
   user: one
   author: one
   customer: one
 
 two:
-  formula: MyText
+  title: MyText
   comment: MyText
   date: 2018-10-04
-  start_time: 2018-10-04 19:53:27
-  end_time: 2018-10-04 19:53:27
+  start: 2018-10-04 19:53:27
+  end: 2018-10-04 19:53:27
   status: 1
   user: two
   author: two

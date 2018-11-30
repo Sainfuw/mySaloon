@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 2018_10_04_230431) do
     t.string "lastname"
     t.string "surname"
     t.string "phone"
-    t.integer "status"
-    t.integer "role"
+    t.integer "status", default: 1
+    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

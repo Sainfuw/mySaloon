@@ -1,15 +1,4 @@
 $(document).on('turbolinks:load', function() {  
-
-  /*---timepicker with focusin---*/
-  $('#modalInput').on('focusin', '.timePicker', function() {
-    $(this).timepicker({
-      'disableTimeRanges': [
-        ['12am', '6am'],
-        ['9:01pm', '11:31pm']
-      ]
-    });
-  });
-  /*---end timepicker---*/
   
   /*---Selectable fullcalendar---*/
   var current_date = moment().format("YYYY-MM-DD");

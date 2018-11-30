@@ -1,6 +1,12 @@
 $("#ModalType").html("Nueva Reserva");
 $(".modal-body").html("<%= j render 'form', booking: @booking %>");
-/*---Load Bootstrap Select---*/
+/*---Load Bootstrap Select and timepicker---*/
 $('.selectpicker').selectpicker();
+$('.timePicker').timepicker({
+  'disableTimeRanges': [
+    ['12am', '6am'],
+    ['9:01pm', '11:31pm']
+  ]
+});
   /*---end Bootstrap Select---*/
 $("#modalInput").modal();
