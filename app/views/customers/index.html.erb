@@ -16,6 +16,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Telefono</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Creador</th>
                 <th scope="col">Editar Usuario</th>
@@ -29,6 +30,7 @@
                 <td><%= customer.name %></td>
                 <td><%= customer.email %></td>
                 <td><%= customer.phone %></td>
+                <td><%= customer.address %></td>
                 <td><%= customer.enabled? ? "Habilitado" : "Deshabilitado" %></td>
                 <td><%= customer.author.name %></td>
                 <td>

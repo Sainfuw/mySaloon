@@ -58,6 +58,9 @@ ActiveRecord::Schema.define(version: 2018_10_04_230431) do
     t.string "name"
     t.string "email"
     t.string "phone"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.integer "status"
     t.bigint "author_id"
     t.datetime "created_at", null: false

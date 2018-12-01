@@ -15,15 +15,19 @@
       <div class="col-md-12 col-lg-12">
         <div class="form-group">
           <%= form.label :name, "Nombre", class: "form-label" %>
-          <%= form.text_field :name, class: "form-control", placeholder: "Ingrese su nombre" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Ingrese su nombre..." %>
         </div>
         <div class="form-group">
           <%= form.label :email, "Correo Electronico", class: "form-label" %>
-          <%= form.email_field :email, class: "form-control", placeholder: "Ingrese su Correo Electronico" %>
+          <%= form.email_field :email, class: "form-control", placeholder: "Ingrese su Correo Electronico..." %>
         </div>
         <div class="form-group">
           <%= form.label :phone, "Telefono", class: "form-label" %>
-          <%= form.text_field :phone, id: 'autoComplete', class: "form-control", placeholder: "Ingrese su Telefono" %>
+          <%= form.text_field :phone, class: "form-control", placeholder: "Ingrese su Telefono..." %>
+        </div>
+        <div class="form-group">
+          <%= form.label :address, "Dirección", class: "form-label" %>
+          <%= form.text_field :address, id: 'autoComplete', class: "form-control", placeholder: "Ingrese su Dirección..." %>
         </div>
         <div class="form-group">
           <%= form.label :status, "Estado", class: "form-label" %>
@@ -38,14 +42,3 @@
     </div>
   </div>
 <% end %>
-<script>
-  function initAutoComplete() {
-    var input = $('#autoComplete');
-    var autocomplete = new google.maps.places.Autocomplete(input);
-  }
-</script>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHfdD7_UTQxrMlP1akzKh9rUPsKaXvRK8&libraries=places&callback=initAutoComplete">
-</script>
-    
-

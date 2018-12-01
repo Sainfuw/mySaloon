@@ -30,6 +30,8 @@
 //= require echartcustom.js
 // ---- BootstrapSelect ----
 //= require bootstrap-select/dist/js/bootstrap-select
+// ---- Custom gmaps ----
+//= require gmaps
 // ---- Custom Settings ----
 //= require fullcalendar
 //= require scroll-bar/jquery.mCustomScrollbar.concat.min
