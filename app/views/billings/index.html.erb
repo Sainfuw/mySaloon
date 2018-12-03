@@ -10,10 +10,10 @@
             <thead>
               <tr>
                 <th scope="col">ID</th>
+                <th scope="col">Cliente</th>
                 <th scope="col">Método de Pago</th>
                 <th scope="col">Total</th>
                 <th scope="col">Moneda</th>
-                <th scope="col">Cliente</th>
                 <% if can? :manage, Billing %>
                   <th scope="col">Editar Factura</th>
                 <% else %>
@@ -22,21 +22,8 @@
                 <th scope="col">Información</th>
               </tr>
             </thead>
-            <tbody>
-            <% @billings.each do |billing| %>
-              <tr id='<%= billing.id %>'>
-                <td><%= billing.id %></td>
-                <td><%= billing.payment_method %></td>
-                <td><%= number_to_currency(billing.amount.to_i) %></td>
-                <td><%= billing.currency %></td>
-                <td><%= billing.customer.name %></td>
-                <td>
-                  <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_billing_path(billing), class: "btn btn-sm btn-primary" if can? :update, billing %>
-                  <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, billing, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-sm btn-danger" if can? :destroy, billing %>
-                </td>
-                <td><%= link_to '<i class="fa fa-info-circle"></i> Detalles'.html_safe, billing, class: "btn btn-sm btn-info" %></td>
-              </tr>
-            <% end %>
+            <tbody id="billings">
+              <%= render @billings %>
             </tbody>
           </table>
         </div>

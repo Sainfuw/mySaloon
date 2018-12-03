@@ -24,24 +24,8 @@
                 <th scope="col">Información</th>
               </tr>
             </thead>
-            <tbody>
-              <% @users.each do |user| %>
-                <tr id='<%= user.id %>'>
-                  <td scope="row"><%= user.id %></td>
-                  <td><%= user.name %></td>
-                  <td><%= user.lastname %></td>
-                  <td><%= user.surname %></td>
-                  <td><%= user.email %></td>
-                  <td><%= user.phone %></td>
-                  <td><%= user.enabled? ? "Habilitado" : "Deshabilitado" %></td>
-                  <td><%= user_role(user) %></td>
-                  <td>
-                    <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_user_path(user), class: "btn btn-sm btn-primary" if can? :update, user %>
-                    <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, user, method: :delete, data: { confirm: 'Estas segur@?' }, remote: true, class: "btn btn-sm btn-danger" if can? :destroy, user %>
-                  </td>
-                  <td><%= link_to '<i class="fa fa-info-circle"></i> Detalles'.html_safe, user, class: "btn btn-sm btn-info" %></td>
-                </tr>
-              <% end %>
+            <tbody id="users">
+              <%= render @users %>
             </tbody>
           </table>
         </div>

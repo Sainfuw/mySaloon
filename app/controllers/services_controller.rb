@@ -6,7 +6,11 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.all
+    if params[:searchBar].present?
+      @services = Service.where("name like ?", "%#{params[:searchBar]}%")
+    else
+      @services = Service.all
+    end
   end
 
   # GET /services/1

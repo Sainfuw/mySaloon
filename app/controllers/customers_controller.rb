@@ -6,7 +6,11 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    if params[:searchBar].present?
+      @customers = Customer.where("name like ?", "%#{params[:searchBar]}%")
+    else
+      @customers = Customer.all
+    end
   end
 
   # GET /customers/1

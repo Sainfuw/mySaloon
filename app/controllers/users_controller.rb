@@ -6,7 +6,11 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if current_user.admin?
-      @users = User.all
+      if params[:searchBar].present?
+        @users = User.where("name like ?", "%#{params[:searchBar]}%")
+      else
+        @users = User.all
+      end
     end
   end
 

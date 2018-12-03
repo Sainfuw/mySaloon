@@ -11,23 +11,24 @@
  * It is generally better to create a new file per style scope.
  *
  * ---- Page Base ----
- *= require bootstrap/dist/css/bootstrap
- *= require fonts/font-awesome
- *= require fullside-menu/css/style
- *= require fullside-menu/waves.min
+*= require bootstrap/dist/css/bootstrap
+*= require fonts/font-awesome
+*= require fullside-menu/css/style
+*= require fullside-menu/waves.min
  * ---- FullCalendar ----
- *= require fullcalendar/fullcalendar
- *= require timepicker/jquery.timepicker
+*= require fullcalendar/fullcalendar
+*= require timepicker/jquery.timepicker
  * ---- BootstrapSelect ----
- *= require bootstrap-select/dist/css/bootstrap-select
- * ---- Theme ----
- *= require dashboard
- *= require charts-c3/c3-chart
- *= require scroll-bar/jquery.mCustomScrollbar
- *= require iconfonts/plugin
+*= require bootstrap-select/dist/css/bootstrap-select
+  * ---- Theme ----
+*= require dashboard
+*= require charts-c3/c3-chart
+*= require scroll-bar/jquery.mCustomScrollbar
+*= require iconfonts/plugin
  * ---- Personal Changes ----
-*= require custom.scss
+*= require notifications
+*= require custom
  * ---- Rails ----
- *= require_tree .
- *= require_self
- */
+*= require_tree .
+*= require_self
+*/

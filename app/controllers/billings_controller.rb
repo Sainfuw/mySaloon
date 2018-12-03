@@ -4,7 +4,11 @@ class BillingsController < ApplicationController
   # GET /billings
   # GET /billings.json
   def index
-    @billings = Billing.all
+    if params[:searchBar].present?
+      @billings  = Billing.where('amount = ?', params[:searchBar])
+    else
+      @billings = Billing.all
+    end
   end
 
   # GET /billings/1
