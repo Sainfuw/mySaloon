@@ -25,15 +25,17 @@ $(document).on('turbolinks:load', function() {
       })
     },
     eventClick: function (event, jsEvent, view) {
-      $.ajax({
-        url: '/bookings/' + event.id + '/edit',
-        type: 'GET',
-        dataType: 'script',
-        data: {
-          booking: { date: event.start.format() },
-          authenticity_token: $("#calendar").data("token")
-        }
-      })
+      if (event.editable || event.role == "admin") {
+        $.ajax({
+          url: '/bookings/' + event.id + '/edit',
+          type: 'GET',
+          dataType: 'script',
+          data: {
+            booking: { date: event.start.format() },
+            authenticity_token: $("#calendar").data("token")
+          }
+        })
+      }
       if (event.url) { return false }
     },
     eventDrop: function(event, delta, revertFunc) {

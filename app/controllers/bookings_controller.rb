@@ -31,10 +31,8 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @booking.save
 
-        @services_ids.each do |service_id|
-          if !service_id.empty?
-            BookingService.create(booking: @booking, service_id: service_id)
-          end
+        @services_ids.reject(&:empty?).each do |service_id|
+          BookingService.create(booking: @booking, service_id: service_id)
         end
 
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -53,20 +51,23 @@ class BookingsController < ApplicationController
   def update
     @booking.date = params[:booking][:date]
     @services_ids = params[:booking][:services]
-
+    @billing = Billing.new
+    
     respond_to do |format|
       if @booking.update(booking_params)
 
         @booking.booking_services.destroy_all
-        @services_ids.each do |service_id|
-          if !service_id.empty?
-            BookingService.create(booking: @booking, service_id: service_id)
-          end
+        @services_ids.reject(&:empty?).each do |service_id|
+          BookingService.create(booking: @booking, service_id: service_id)
         end
 
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
-        format.js
+        if @booking.completed?
+          format.js { render 'billings/new.js.erb' }
+        else
+          format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+          format.json { render :show, status: :ok, location: @booking }
+          format.js
+        end
       else
         format.html { render :edit }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -78,7 +79,11 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
+    @billing = @booking.booking_services.last.billing
     @booking.destroy
+    if @billing.present?
+      @billing.destroy
+    end
     respond_to do |format|
       format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }

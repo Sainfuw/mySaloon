@@ -3,16 +3,30 @@ $(document).on('turbolinks:load', function() {
     'use strict' 
 
     /*-----echartArea2-----*/
+    var billings = function () { 
+      var tmp = []; 
+      $.ajax({
+        async: false,
+        url: '/dashboard/get_billings_per_day',
+        type: 'GET',
+        dataType: "json",
+        success: function (data) {
+          tmp = data;
+        }
+      });
+      return tmp;
+    }();
+    console.log(billings);
     var areaData2 = [
       {
         name: 'Sales',
         type: 'line',
         smooth: true,
-        data: [0, 100000, 200000, 300000, 600000, 650000],
+        data: billings,
         symbolSize: 20,
         lineStyle: {
           normal: {
-            width: 4,
+            width: 8,
             color: new echarts.graphic.LinearGradient(
               0, 0, 0, 1,
               [
@@ -34,7 +48,7 @@ $(document).on('turbolinks:load', function() {
         left: '50',
       },
       xAxis: {
-        data: ['Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov'],
+        data: ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE'],
         boundaryGap: false,
         axisLine: {
           lineStyle: { color: '#c0dfd8' }
@@ -81,7 +95,7 @@ $(document).on('turbolinks:load', function() {
     var areaChart2 = echarts.init(chartArea2);
     areaChart2.setOption(optionArea2);
 
-    var my_data = function () { 
+    var bookings = function () { 
       var tmp = []; 
       $.ajax({
         async: false,
@@ -99,7 +113,7 @@ $(document).on('turbolinks:load', function() {
       name: 'data',
       type: 'line',
       smooth: true,
-      data: my_data,
+      data: bookings,
       lineStyle: {
         normal: { width: 1 }
       },

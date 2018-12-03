@@ -22,4 +22,19 @@ class DashboardController < ApplicationController
     end
     render json: @bookings_per_day
   end
+
+  def get_billings_per_day
+    @date = Date.today
+    @billings_per_day = []
+    6.times do |x|
+      @sum = 0
+      @billings = Billing.where(created_at: @date.beginning_of_day..@date.end_of_day)
+      @billings.each do |billing|
+        @sum += billing.amount
+      end
+      @date -= 1
+      @billings_per_day << @sum
+    end
+    render json: @billings_per_day.reverse
+  end
 end

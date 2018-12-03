@@ -1,0 +1,40 @@
+<div class="content-area">
+	<div class="page-header">
+		<h4 class="page-title">Información de Factura</h4>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Facturas</li>
+			<li class="breadcrumb-item active" aria-current="page">Información</li>
+		</ol>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+      <div class="card-body">
+        <div class=" " id="profile-log-switch">
+          <div class="fade show active ">
+            <div class="table-responsive border ">
+              <table class="table row table-borderless w-100 m-0 ">
+                <tbody class="col-12 p-0">
+                  <tr>
+                    <td><strong>Código: </strong><%= @billing.code %> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Método de Pago: </strong><%= @billing.payment_method %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Total: </strong><%= @billing.amount %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Moneda: </strong><%= @billing.currency %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cliente: </strong><%= @billing.customer.name %></td>
+                  </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

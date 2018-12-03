@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   belongs_to :author, class_name: 'User', primary_key: :id, foreign_key: :author_id
   has_many :bookings, dependent: :destroy
+  has_many :billings, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true
@@ -9,7 +10,7 @@ class Customer < ApplicationRecord
 
   enum status: [ :disabled, :enabled ]
 
-  before_save :coordinates
+  #before_save :coordinates
 
   def self.name_id
     Customer.pluck(:name, :id)

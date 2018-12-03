@@ -61,6 +61,7 @@ class ServicesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

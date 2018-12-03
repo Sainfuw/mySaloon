@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <% @customers.each do |customer| %>
-              <tr>
+              <tr id='<%= customer.id %>'>
                 <td><%= customer.id %></td>
                 <td><%= customer.name %></td>
                 <td><%= customer.email %></td>
@@ -35,7 +35,7 @@
                 <td><%= customer.author.name %></td>
                 <td>
                     <%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_customer_path(customer), class: "btn btn-sm btn-primary" %>
-                    <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, customer, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-sm btn-danger" %>
+                    <%= link_to '<i class="fa fa-trash"></i> Eliminar'.html_safe, customer, method: :delete, data: { confirm: 'Estas segur@?' }, remote: true, class: "btn btn-sm btn-danger" %>
                   </td>
                 <td><%= link_to '<i class="fa fa-info-circle"></i> Detalles'.html_safe, customer, class: "btn btn-sm btn-info" %></td>
               </tr>

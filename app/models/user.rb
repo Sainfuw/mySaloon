@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :customers, class_name: "Customer", foreign_key: 'author_id', dependent: :destroy
   has_many :services, class_name: "Service", foreign_key: 'author_id', dependent: :destroy
   has_many :bookings, class_name: "Booking", foreign_key: 'author_id', dependent: :destroy
-  has_many :billings, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
   validates :name, presence: true
   validates :lastname, presence: true

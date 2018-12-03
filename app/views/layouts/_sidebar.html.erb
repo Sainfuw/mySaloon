@@ -40,9 +40,9 @@
           <a href="<%= bookings_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-shopping-cart mr-2"></i> Reservas</a>
         </li>
       <% end %>
-      <% if current_user.admin? || current_user.assistant? %>
+      <% if can? :manage, Billing %>
         <li>
-          <a href="#" class=" wave-effect waves-effect waves-button"><i class="fa fa-dollar mr-2"></i> Ventas realizadas</a>
+          <a href="<%= billings_url %>" class=" wave-effect waves-effect waves-button"><i class="fa fa-dollar mr-2"></i> Ventas realizadas</a>
         </li>
       <% end %>
     </ul>
