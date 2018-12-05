@@ -1,0 +1,48 @@
+<%= form_with(model: @billing, local: true) do |form| %>
+  <% if @billing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@billing.errors.count, "error") %> prohibited this billing from being saved:</h2>
+
+      <ul>
+      <% @billing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :payment_method, 'Método de Pago', class: 'form-control-label' %>
+    <%= form.select :payment_method, ['Efectivo', 'Cheque', 'Transferencia', 'Paypal'], { selected: 'Efectivo' }, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :amount, 'Total', class: 'form-control-label' %>
+    <%= form.text_field :amount, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :currency, 'Moneda', class: 'form-control-label' %>
+    <%= form.select :currency, ['CLP', 'USD'], { selected: 'CLP' }, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :comment, 'Comentario', class: 'form-control-label' %>
+    <%= form.text_area :comment, class: 'form-control' %>
+  </div>
+  <% if defined?(@booking).nil? %>
+    <div class="form-group">
+      <%= form.label :customer, 'Comentario', class: 'form-control-label' %>
+      <%= form.select :customer, Customer.pluck(:name, :id), { selected: @billing.customer.id } , class: 'form-control' %>
+    </div>
+  <% else %>
+    <%= form.hidden_field :customer_id, value: @booking.customer.id %>
+    <%= form.hidden_field :booking_id, value: @booking.id %>
+    </div>
+  <% end %>
+<div class="actions modal-footer">
+  <%= button_tag type: 'submit', class: "btn btn-primary btn-sm btn-block mt-4" do %>
+    <i class="fa fa-edit"></i> Guardar
+  <% end %>
+</div>
+<% end %>

@@ -25,9 +25,17 @@
 //= require fullcalendar/fullcalendar
 //= require fullcalendar/locale/es
 //= require timepicker/jquery.timepicker
+// ---- eChart ----
+//= require echarts/echarts.js
+//= require echartcustom.js
 // ---- BootstrapSelect ----
 //= require bootstrap-select/dist/js/bootstrap-select
+// ---- Alerts ----
+//= require notifications
 // ---- Custom Settings ----
+//= require alerts
+//= require gmaps
+//= require search
 //= require fullcalendar
 //= require scroll-bar/jquery.mCustomScrollbar.concat.min
 //= require custom

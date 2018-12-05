@@ -4,7 +4,15 @@ class Booking < ApplicationRecord
   belongs_to :customer
   has_many :booking_services, dependent: :destroy
   has_many :services, through: :booking_services
-  has_many :billings, through: :booking_services
+  has_many :billings, through: :booking_services, dependent: :destroy
+
+  validates :title, presence: true
+  validates :date, presence: true
+  validates :start, presence: true
+  validates :end, presence: true
+  validates :user_id, presence: true
+  validates :author_id, presence: true
+  validates :customer_id, presence: true
 
   enum status: [ :nulled, :active, :completed ]
 
@@ -17,6 +25,14 @@ class Booking < ApplicationRecord
       return "#9F78FF"
     else
       return "#C3C3C3"
+    end
+  end
+
+  def editable(role)
+    if self.active? || role == "admin"
+      return true 
+    else 
+      return false
     end
   end
 

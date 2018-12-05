@@ -6,10 +6,12 @@ class Ability
     can [:read, :update], Booking, user: user
     can [:create], Booking
     can [:create, :read], Service
+    can [:create], Billing
     return unless user.assistant? or user.admin?
     can [:manage], Customer
     can [:create, :read], Service
     can [:manage], Booking
+    can [:create, :read, :update], Billing
     return unless user.admin?
     can :manage, :all
   end

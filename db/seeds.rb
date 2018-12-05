@@ -23,26 +23,31 @@ User.destroy_all
 @assistant = User.create(
   email: "assistant@mta.cl",
   password: "prueba",
-  name: "Emilio",
-  lastname: "Navarro",
+  name: "Hernan",
+  lastname: "Mira",
   status: 1,
   role: 1
 )
 
-@professional = User.create(
-  email: "professional@mta.cl",
-  password: "prueba",
-  name: "Emilio",
-  lastname: "Navarro",
-  status: 1,
-  role: 0
-)
+5.times do 
+  @name = Faker::Name.first_name
+  @professional = User.create(
+    email: "#{@name}@mta.cl",
+    password: "prueba",
+    name: @name,
+    lastname: Faker::Name.last_name,
+    status: 1,
+    role: 0
+  )
+end
 
 10.times do |x|
+  @name = Faker::Name.name
+  Faker::Config.locale = 'en-US'
   @customer = Customer.create(
-    name: "Cliente#{x + 1}",
-    email: "cliente#{x + 1}@gmail.com",
-    phone: "2339434#{x + 1}",
+    name: @name,
+    email: Faker::Internet.email,
+    phone: Faker::PhoneNumber.cell_phone,
     status: 1,
     author: @admin
   )
@@ -53,16 +58,16 @@ User.destroy_all
     author: @admin
   )
   2.times do |x|
-    start_at = Random.rand(15).days.ago + 5.days
+    start_at = Random.rand(8).days.ago
     time = rand(12) + 6
     @booking = Booking.create(
-      title: Faker::Overwatch.hero,
-      comment: Faker::Overwatch.quote,
+      title: Faker::Lorem.word,
+      comment: Faker::Lorem.paragraph,
       date: start_at.change({ hour: 0, min: 0, sec: 0 }),
       start: start_at.change({ hour: time, min: 30, sec: 0 }),
       end: start_at.change({ hour: time + 2, min: 30, sec: 0 }),
-      status: rand(3),
-      user: @professional,
+      status: 2,
+      user: User.where(role: 0)[rand(5)],
       author: @admin,
       customer: @customer
     )
@@ -71,12 +76,35 @@ User.destroy_all
       payment_method: "Efectivo",
       amount: 20000,
       currency: "CLP",
-      user: @assistant
+      customer: @customer
     )
     BookingService.create(
       service: @service,
       booking: @booking,
       billing: @billing
     )
+    @billing.update_attribute :created_at, start_at.change({ hour: time, min: 30, sec: 0 })
+  end
+  2.times do |x|
+    start_at = Random.rand(8).days.ago + 7.days
+    time = rand(12) + 6
+    @booking = Booking.create(
+      title: Faker::Lorem.word,
+      comment: Faker::Lorem.paragraph,
+      date: start_at.change({ hour: 0, min: 0, sec: 0 }),
+      start: start_at.change({ hour: time, min: 30, sec: 0 }),
+      end: start_at.change({ hour: time + 2, min: 30, sec: 0 }),
+      status: 1,
+      user: User.where(role: 0)[rand(5)],
+      author: @admin,
+      customer: @customer
+    )
+    BookingService.create(
+      service: @service,
+      booking: @booking
+    )
   end
 end
+
+
+

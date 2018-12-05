@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 2018_10_04_230431) do
     t.string "payment_method"
     t.decimal "amount", precision: 19, scale: 4
     t.string "currency"
-    t.bigint "user_id"
+    t.text "comment"
+    t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_billings_on_user_id"
+    t.index ["customer_id"], name: "index_billings_on_customer_id"
   end
 
   create_table "booking_services", force: :cascade do |t|
@@ -58,6 +59,9 @@ ActiveRecord::Schema.define(version: 2018_10_04_230431) do
     t.string "name"
     t.string "email"
     t.string "phone"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.integer "status"
     t.bigint "author_id"
     t.datetime "created_at", null: false
@@ -85,15 +89,15 @@ ActiveRecord::Schema.define(version: 2018_10_04_230431) do
     t.string "lastname"
     t.string "surname"
     t.string "phone"
-    t.integer "status"
-    t.integer "role"
+    t.integer "status", default: 1
+    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "billings", "users"
+  add_foreign_key "billings", "customers"
   add_foreign_key "booking_services", "billings"
   add_foreign_key "booking_services", "bookings"
   add_foreign_key "booking_services", "services"

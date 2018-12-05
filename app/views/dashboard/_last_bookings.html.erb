@@ -1,0 +1,38 @@
+<div class="row mg-t-20">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header ">
+        <h3 class="card-title ">Ultimas Reservas</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover card-table table-striped table-vcenter table-outline text-nowrap">
+          <thead>
+            <tr>
+              <th scope="col">Titulo</th>
+              <th scope="col">Comentario</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Inicio</th>
+              <th scope="col">Termino</th>
+              <th scope="col">Profesional</th>
+              <th scope="col">Cliente</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @bookings.each do |booking| %>
+            <tr>
+              <td><%= booking.title %></td>
+              <td><%= booking.comment %></td>
+              <td><%= booking.date.to_date %></td>
+              <td><%= booking.start.to_s(:time) %></td>
+              <td><%= booking.end.to_s(:time) %></td>
+              <td><%= booking.user.name %></td>
+              <td><%= booking.customer.name %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- table-responsive -->
+    </div>
+  </div>
+</div>

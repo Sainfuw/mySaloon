@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_boxes, only: [:new, :edit]
   load_and_authorize_resource
 
   # GET /users
   # GET /users.json
   def index
     if current_user.admin?
-      @users = User.all
+      if params[:searchBar].present?
+        @users = User.where("name like ?", "%#{params[:searchBar]}%")
+      else
+        @users = User.all
+      end
     end
   end
 
@@ -32,7 +35,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_url, notice: 'User was successfully created.' }
+        format.html { redirect_to users_url, info: 'Usuario creado satisfactoriamente...' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_url, info: 'Usuario modificado satisfactoriamente...' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -60,8 +63,9 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, info: 'Usuario eliminado satisfactoriamente...' }
       format.json { head :no_content }
+      format.js { flash.now[:info] = 'Usuario eliminado satisfactoriamente...' }
     end
   end
 
@@ -69,11 +73,6 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-    end
-
-    def check_boxes
-      @status = [["Deshabilitado", "disabled"], ["Habilitado", "enabled"]]
-      @roles = [["Profesional", "professional"], ["Asistente", "assistant"], ["Administrador", "admin"]]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -6,7 +6,11 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    if params[:searchBar].present?
+      @customers = Customer.where("name like ?", "%#{params[:searchBar]}%")
+    else
+      @customers = Customer.all
+    end
   end
 
   # GET /customers/1
@@ -31,7 +35,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to customers_url, notice: 'Customer was successfully created.' }
+        format.html { redirect_to customers_url, info: 'Cliente creado satisfactoriamente...' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -45,7 +49,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to customers_url, notice: 'Customer was successfully updated.' }
+        format.html { redirect_to customers_url, info: 'Cliente modificado satisfactoriamente...' }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -59,8 +63,9 @@ class CustomersController < ApplicationController
   def destroy
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
+      format.html { redirect_to customers_url, success: 'Cliente eliminado correctamente...' }
       format.json { head :no_content }
+      format.js { flash.now[:info] = 'Cliente eliminado correctamente...' }
     end
   end
 
@@ -76,6 +81,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :email, :phone, :status, :author_id)
+      params.require(:customer).permit(:name, :email, :phone, :address, :status, :author_id)
     end
 end

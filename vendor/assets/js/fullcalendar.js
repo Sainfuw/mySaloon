@@ -1,15 +1,4 @@
 $(document).on('turbolinks:load', function() {  
-
-  /*---timepicker with focusin---*/
-  $('#modalInput').on('focusin', '.timePicker', function() {
-    $(this).timepicker({
-      'disableTimeRanges': [
-        ['12am', '6am'],
-        ['9:01pm', '11:31pm']
-      ]
-    });
-  });
-  /*---end timepicker---*/
   
   /*---Selectable fullcalendar---*/
   var current_date = moment().format("YYYY-MM-DD");
@@ -36,15 +25,17 @@ $(document).on('turbolinks:load', function() {
       })
     },
     eventClick: function (event, jsEvent, view) {
-      $.ajax({
-        url: '/bookings/' + event.id + '/edit',
-        type: 'GET',
-        dataType: 'script',
-        data: {
-          booking: { date: event.start.format() },
-          authenticity_token: $("#calendar").data("token")
-        }
-      })
+      if (event.editable || event.role == "admin") {
+        $.ajax({
+          url: '/bookings/' + event.id + '/edit',
+          type: 'GET',
+          dataType: 'script',
+          data: {
+            booking: { date: event.start.format() },
+            authenticity_token: $("#calendar").data("token")
+          }
+        })
+      }
       if (event.url) { return false }
     },
     eventDrop: function(event, delta, revertFunc) {

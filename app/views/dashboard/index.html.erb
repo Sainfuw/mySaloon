@@ -1,8 +1,8 @@
 <div class=" content-area ">
   <div class="page-header">
-    <h4 class="page-title">Dashboard</h4>
+    <h4 class="page-title">Panel de Información</h4>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Informacion</a></li>
+      <li class="breadcrumb-item"><a href="#">Información</a></li>
     </ol>
   </div>
 
@@ -17,12 +17,12 @@
               </span>
             </div>
             <div class="float-right text-right">
-              <p class="card-text text-muted font-weight-semibold mb-1">Orders</p>
-              <h2>656</h2>
+              <p class="card-text text-muted font-weight-semibold mb-1">Servicios</p>
+              <h2><%= @services_count %></h2>
             </div>
           </div>
           <div class="card-footer p-0">
-            <p class="text-muted mb-0 pt-4"><i class="si si-arrow-down-circle text-warning mr-1" aria-hidden="true"></i> Today Orders</p>
+            <p class="text-muted mb-0 pt-4"><i class="si si-arrow-down-circle text-warning mr-1" aria-hidden="true"></i> Servicios Activos</p>
           </div>
         </div>
       </div>
@@ -37,12 +37,12 @@
               </span>
             </div>
             <div class="float-right text-right">
-              <p class="card-text text-muted font-weight-semibold mb-1">Revenue</p>
-              <h2>$ 35,264</h2>
+              <p class="card-text text-muted font-weight-semibold mb-1">Reservas</p>
+              <h2><%= @bookings_count %></h2>
             </div>
           </div>
           <div class="card-footer p-0">
-            <p class="text-muted mb-0 pt-4"><i class="si si-arrow-up-circle text-success mr-1"></i>Today Sales</p>
+            <p class="text-muted mb-0 pt-4"><i class="si si-arrow-up-circle text-success mr-1"></i> Total de Reservas</p>
           </div>
         </div>
       </div>
@@ -57,12 +57,12 @@
               </span>
             </div>
             <div class="float-right text-right">
-              <p class="card-text text-muted font-weight-semibold mb-1">Profit</p>
-              <h2>65%</h2>
+              <p class="card-text text-muted font-weight-semibold mb-1">Completadas</p>
+              <h2><%= @book_comp_prom %>%</h2>
             </div>
           </div>
           <div class="card-footer p-0">
-            <p class="text-muted mb-0 pt-4"><i class="si si-exclamation text-info mr-1" ></i>Today profit</p>
+            <p class="text-muted mb-0 pt-4"><i class="si si-exclamation text-info mr-1" ></i> Reservas Completadas</p>
           </div>
         </div>
       </div>
@@ -73,16 +73,16 @@
           <div class="clearfix">
             <div class="float-left  mt-2">
               <span class="text-primary ">
-                <i class="si si-social-facebook "></i>
+                <i class="si si-user-following "></i>
               </span>
             </div>
             <div class="float-right text-right">
-              <p class="card-text text-muted font-weight-semibold mb-1">Followers</p>
-              <h2>65K</h2>
+              <p class="card-text text-muted font-weight-semibold mb-1">Clientes</p>
+              <h2><%= @clients_count %></h2>
             </div>
           </div>
           <div class="card-footer p-0">
-            <p class="text-muted mb-0 pt-4"><i class="si si-check mr-1 text-primary" ></i> Recent Activities</p>
+            <p class="text-muted mb-0 pt-4"><i class="si si-check mr-1 text-primary" ></i> Total de Clientes</p>
           </div>
         </div>
       </div>
@@ -93,21 +93,21 @@
     <div class="col-lg-12 col-sm-12">
       <div class="card ">
         <div class="card-header">
-          <h3 class="card-title">Company Growth Yearly</h3>
+          <h3 class="card-title">Total ventas mensuales</h3>
           <div class="card-options ">
             <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
           </div>
         </div>
         <div class="card-body">
-          <div id="echart1" class="chartsh chart-dropshadow"></div>
+          <div id="echartArea2" class="chart-tasks chart-dropshadow" style="height: 300px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background: transparent;" _echarts_instance_="ec_1543311138398"></div>
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-sm-12">
       <div class="card ">
         <div class="card-header">
-          <div class="card-title">Monthly View</div>
+          <div class="card-title">Servicios mas solicitados</div>
           <div class="card-options ">
             <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
@@ -115,49 +115,7 @@
         </div>
         <div class="card-body p-4">
           <div class="chats-wrap">
-            <div class="chat-details mb-1 p-3">
-              <h4 class="mb-0">
-                <span class="h5 font-weight-normal">Sales</span>
-                <span class="float-right p-1 bg-primary btn btn-sm text-white">
-                <b>70</b>%</span>
-              </h4>
-              <div class="progress progress-md mt-3">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width: 70%"></div>
-              </div>
-            </div>
-            <div class="chat-details mb-1 p-3">
-              <h4 class="mb-0">
-                <span class="h5 font-weight-normal">Profit</span>
-                <span class="float-right p-1 bg-secondary  btn btn-sm text-white">
-                  <b>60</b>%</span>
-              </h4>
-              <div class="progress progress-md mt-3">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" style="width: 60%"></div>
-              </div>
-            </div>
-            <div class="chat-details mb-1 p-3">
-              <h4 class="mb-0">
-                <span class="h5 font-weight-normal">Users</span>
-                <span class="float-right p-1 bg-cyan btn btn-sm text-white">
-                  <b>47%</b>
-                </span>
-              </h4>
-              <div class="progress progress-md mt-3">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-cyan" style="width: 47%"></div>
-              </div>
-            </div>
-            <div class="chat-details mb-1 p-3">
-              <h4 class="mb-0">
-                <span class="h5 font-weight-normal">Growth</span>
-                <span class="float-right p-1 bg-danger btn btn-sm text-white">
-                  <b>25%</b>
-                </span>
-              </h4>
-              <div class="progress progress-md mt-3">
-                <div class="progress-bar progress-bar-striped progress-bar-animated  bg-danger" style="width: 25%"></div>
-              </div>
-            </div>
-
+            <%= render 'top_services' %>
           </div>
         </div>
       </div>
@@ -165,7 +123,7 @@
     <div class="col-lg-8 col-sm-12">
       <div class="card ">
         <div class="card-header">
-          <h3 class="card-title">Daily Vistors</h3>
+          <h3 class="card-title">Reservas Semanales</h3>
           <div class="card-options ">
             <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
@@ -177,148 +135,5 @@
       </div>
     </div>
   </div>
-
-  <div class="row mg-t-20">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header ">
-          <h3 class="card-title ">Projects</h3>
-          <div class="card-options">
-            <button id="add__new__list" type="button" class="btn btn-sm btn-success " data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus"></i> Add a new Project</button>
-
-          </div>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-hover card-table table-striped table-vcenter table-outline text-nowrap">
-            <thead>
-              <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Project Name</th>
-              <th scope="col">Backend</th>
-              <th scope="col">Deadline</th>
-              <th scope="col">Team Members</th>
-              <th scope="col">Edit Project Details </th>
-              <th scope="col">list info</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <th scope="row">1</th>
-              <td>At vero eos et accusamus et iusto odio</td>
-              <td>PHP</td>
-              <td>15/11/2018</td>
-              <td>15 Members</td>
-              <td>
-                <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-edit"></i> Edit</a>
-                <a class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash"></i> Delete</a>
-              </td>
-              <td><a class="btn btn-sm btn-info" href="#"><i class="fa fa-info-circle"></i> Details</a> </td>
-              </tr>
-              <tr>
-              <th scope="row">2</th>
-              <td>voluptatum deleniti atque corrupti quos</td>
-              <td>Angular js</td>
-              <td>25/11/2018</td>
-              <td>12 Members</td>
-              <td>
-                <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-edit"></i> Edit</a>
-                <a class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash"></i> Delete</a>
-              </td>
-              <td><a class="btn btn-sm btn-info" href="#"><i class="fa fa-info-circle"></i> Details</a> </td>
-              </tr>
-              <tr>
-              <th scope="row">3</th>
-              <td >dignissimos ducimus qui blanditiis praesentium </td>
-              <td >Java</td>
-              <td >5/12/2018</td>
-              <td >20 Members</td>
-              <td>
-                <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-edit"></i> Edit</a>
-                <a class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash"></i> Delete</a>
-              </td>
-              <td><a class="btn btn-sm btn-info" href="#"><i class="fa fa-info-circle"></i> Details</a> </td>
-              </tr>
-              <tr>
-              <th scope="row">4</th>
-              <td >deleniti atque corrupti quos dolores  </td>
-              <td >Phython</td>
-              <td >14/12/2018</td>
-              <td >10 Members</td>
-              <td>
-                <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-edit"></i> Edit</a>
-                <a class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash"></i> Delete</a>
-              </td>
-              <td><a class="btn btn-sm btn-info" href="#"><i class="fa fa-info-circle"></i> Details</a> </td>
-              </tr>
-              <tr>
-              <th scope="row">5</th>
-              <td >et quas molestias excepturi sint occaecati</td>
-              <td >Phython</td>
-              <td >4/12/2018</td>
-              <td >17 Members</td>
-              <td>
-                <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-edit"></i> Edit</a>
-                <a class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash"></i> Delete</a>
-              </td>
-              <td><a class="btn btn-sm btn-info" href="#"><i class="fa fa-info-circle"></i> Details</a> </td>
-              </tr>
-            </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'last_bookings' %>
 </div>
-<div class="modal  bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel2">Enter Project Details</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-    <div class="card-body">
-      <form>
-        <div class="form-group">
-          <label for="listname">Project name</label>
-          <input type="text" class="form-control" name="listname" id="listname" placeholder="Enter your listname">
-        </div>
-        <div class="form-group">
-          <label for="listname">Backend</label>
-          <select name="Language" id="select-Language" class="form-control custom-select">
-            <option value="ph" data-data="">PHP</option>
-            <option value="aj" data-data="">Angular js</option>
-            <option value="jv" data-data="">Java</option>
-            <option value="nt" data-data="" selected="">.Net</option>
-            <option value="py" data-data="" >Phython</option>
-            <option value="js" data-data="" >Javascript</option>
-            <option value="ui" data-data="" >UI Design</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label >Deadline</label>
-          <input type="Date" name="Date" class="form-control"  >
-        </div>
-        <div class="form-group">
-          <label for="listname">Team Members</label>
-          <input type="text" class="form-control" name="listname" id="listname2" placeholder="How many Team memebers?">
-        </div>
-        <div class="form-group">
-          <label for="listname">Description</label>
-          <textarea class="form-control" name="example-textarea-input" rows="3" placeholder="text here.."></textarea>
-        </div>
-        <div class="form-group">
-          <label>Add a list item</label>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" name="example-file-input-custom">
-            <label class="custom-file-label">Choose file</label>
-          </div>
-        </div>
-        <div class="form-group text-center">
-          <button type="submit" class="btn btn-block btn-primary">Sign in</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>  

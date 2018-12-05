@@ -6,7 +6,11 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.all
+    if params[:searchBar].present?
+      @services = Service.where("name like ?", "%#{params[:searchBar]}%")
+    else
+      @services = Service.all
+    end
   end
 
   # GET /services/1
@@ -31,7 +35,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to services_url, notice: 'Service was successfully created.' }
+        format.html { redirect_to services_url, info: 'Servicio creado correctamente...' }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
@@ -45,7 +49,7 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to services_url, notice: 'Service was successfully updated.' }
+        format.html { redirect_to services_url, info: 'Servicio modificado satisfactoriamente...' }
         format.json { render :show, status: :ok, location: @service }
       else
         format.html { render :edit }
@@ -59,8 +63,9 @@ class ServicesController < ApplicationController
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
+      format.html { redirect_to services_url, info: 'Servicio eliminado satisfactoriamente...' }
       format.json { head :no_content }
+      format.js { flash.now[:info] = 'Servicio eliminado satisfactoriamente...' }
     end
   end
 
