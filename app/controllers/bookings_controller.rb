@@ -35,9 +35,9 @@ class BookingsController < ApplicationController
           BookingService.create(booking: @booking, service_id: service_id)
         end
 
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to @booking, info: 'Reserva creada satisfactoriamente...' }
         format.json { render :show, status: :created, location: @booking }
-        format.js
+        format.js { flash[:info] = 'Reserva creada satisfactoriamente...' }
       else
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -62,11 +62,11 @@ class BookingsController < ApplicationController
         end
 
         if @booking.completed?
-          format.js { render 'billings/new.js.erb' }
+          format.js { render 'billings/new.js.erb', info = 'Reserva modificada satisfactoriamente...' }
         else
-          format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+          format.html { redirect_to @booking, info: 'Reserva modificada satisfactoriamente...' }
           format.json { render :show, status: :ok, location: @booking }
-          format.js
+          format.js { flash.now[:info] = 'Reserva modificada satisfactoriamente...' }
         end
       else
         format.html { render :edit }
@@ -85,8 +85,9 @@ class BookingsController < ApplicationController
       @billing.destroy
     end
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to bookings_url, info: 'Reserva eliminada satisfactoriamente...' }
       format.json { head :no_content }
+      format.js { flash.now[:info] = 'Reserva eliminada satisfactoriamente...' }
     end
   end
 

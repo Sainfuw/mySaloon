@@ -33,7 +33,7 @@ class BillingsController < ApplicationController
             bs.save
           end
         end
-        format.html { redirect_to bookings_url, notice: 'Billing was successfully created.' }
+        format.html { redirect_to bookings_url, info: 'Factura creada satisfactoriamente...' }
         format.json { render :show, status: :created, location: @billing }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class BillingsController < ApplicationController
   def update
     respond_to do |format|
       if @billing.update(billing_params)
-        format.html { redirect_to @billing, notice: 'Billing was successfully updated.' }
+        format.html { redirect_to @billing, info: 'Factura modificada satisfactoriamente...' }
         format.json { render :show, status: :ok, location: @billing }
       else
         format.html { render :edit }
@@ -61,9 +61,9 @@ class BillingsController < ApplicationController
   def destroy
     @billing.destroy
     respond_to do |format|
-      format.html { redirect_to billings_url, notice: 'Billing was successfully destroyed.' }
+      format.html { redirect_to billings_url, info: 'Factura eliminada satisfactoriamente.' }
       format.json { head :no_content }
-      format.js
+      format.js { flash.now[:info] = 'Factura eliminada satisfactoriamente...' }
     end
   end
 

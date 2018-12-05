@@ -1,0 +1,3 @@
+<% flash.each do |theme, message| %>
+  <script>window.notificationAlert("<%= theme %>","<%= message %>");</script>
+<% end %>
