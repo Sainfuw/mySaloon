@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
 
   enum status: [ :disabled, :enabled ]
 
-  #before_save :coordinates
+  before_save :coordinates
 
   def self.name_id
     Customer.pluck(:name, :id)

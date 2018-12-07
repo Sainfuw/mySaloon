@@ -6,10 +6,7 @@ function initAutoComplete() {
   };
   var autocomplete = new google.maps.places.Autocomplete(input, options);
 }
-$(document).on('turbolinks:load', function() {
-  if ($('#autoComplete').length > 0) {
-  }
-});
+
 function initMap() {
   var input = $("#map");
   var lat = parseFloat(input.attr('data-latitude'));

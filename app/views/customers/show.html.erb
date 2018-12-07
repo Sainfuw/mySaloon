@@ -1,9 +1,9 @@
 <div class="content-area">
 	<div class="page-header">
-		<h4 class="page-title">Informacion del Cliente</h4>
+		<h4 class="page-title">Información del Cliente</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">Clientes</li>
-			<li class="breadcrumb-item active" aria-current="page">Informacion</li>
+			<li class="breadcrumb-item active" aria-current="page">Información</li>
 		</ol>
 	</div>
 
@@ -22,7 +22,7 @@
                     <td><strong>Apellido: </strong><%= @customer.name %></td>
                   </tr>
                   <tr>
-                    <td><strong>Telefono: </strong><%= @customer.phone %></td>
+                    <td><strong>Teléfono: </strong><%= @customer.phone %></td>
                   </tr>
                   <tr>
                     <td><strong>Dirección: </strong><%= @customer.address %></td>
@@ -30,7 +30,7 @@
                 </tbody>
                 <tbody class="col-6 p-0">
                   <tr>
-                    <td><strong>Correo Electronico: </strong><%= @customer.email %></td>
+                    <td><strong>Correo Electrónico: </strong><%= @customer.email %></td>
                   </tr>
                   <tr>
                     <td><strong>Estado: </strong><%= @customer.enabled? ? "Habilitado" : "Deshabilitado" %></td>
@@ -46,8 +46,8 @@
       </div>
     </div>
     <div class="col-12">
-      <div id="map" data-latitude="<%= @customer.latitude %>" data-longitude="<%= @customer.longitude %>" </div>
+      <div id="map" data-latitude="<%= @customer.latitude %>" data-longitude="<%= @customer.longitude %>"></div>
     </div>
   </div>
 </div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUUEhS9Bddf9XRGUI1G5FoJEi042kXlt0&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUGD2N-lVs5_CWwEunK_IpEU_ZHhQFuLg&callback=initMap"></script>
