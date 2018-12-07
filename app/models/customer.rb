@@ -17,8 +17,10 @@ class Customer < ApplicationRecord
   end
 
   def coordinates
-    @coords = Geocoder.search(self.address).first.coordinates
-    self.latitude = @coords[0].round(7)
-    self.longitude = @coords[1].round(7)
+    if !self.address.nil?
+      @coords = Geocoder.search(self.address).first.coordinates
+      self.latitude = @coords[0].round(7)
+      self.longitude = @coords[1].round(7)
+    end
   end
 end
