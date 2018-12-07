@@ -136,7 +136,7 @@ $(document).on('turbolinks:load', function() {
         left: '25',
       },
       xAxis: {
-        data: ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB','DOM'],
+        data: ['MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM','LUN'],
         axisLine: {
           lineStyle: {
             color: '#eaeaea'

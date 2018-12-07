@@ -19,7 +19,7 @@
                     <td><strong>Nombre :</strong><%= @service.name %> </td>
                   </tr>
                   <tr>
-                    <td><strong>Precio :</strong><%= @service.price %></td>
+                    <td><strong>Precio :</strong><%= number_to_currency(@service.price) %></td>
                   </tr>
                   <tr>
                     <td><strong>Estado :</strong><%= @service.enabled? ? "Habilitado" : "Deshabilitado" %></td>

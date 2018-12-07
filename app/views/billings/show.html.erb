@@ -22,7 +22,7 @@
                     <td><strong>Método de Pago: </strong><%= @billing.payment_method %></td>
                   </tr>
                   <tr>
-                    <td><strong>Total: </strong><%= @billing.amount %></td>
+                    <td><strong>Total: </strong><%= number_to_currency(@billing.amount) %></td>
                   </tr>
                   <tr>
                     <td><strong>Moneda: </strong><%= @billing.currency %></td>

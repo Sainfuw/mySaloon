@@ -1,7 +1,7 @@
 <tr id='<%= service.id %>'>
   <td><%= service.id %></td>
   <td><%= service.name %></td>
-  <td><%= number_to_currency(service.price.to_i) %></td>
+  <td><%= number_to_currency(service.price) %></td>
   <td><%= service.enabled? ? "Habilitado" : "Deshabilitado" %></td>
   <td><%= service.author.name %></td>
   <td>
