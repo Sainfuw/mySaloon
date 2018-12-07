@@ -62,7 +62,7 @@ class BookingsController < ApplicationController
         end
 
         if @booking.completed?
-          format.js { render 'billings/new.js.erb', info = 'Reserva modificada satisfactoriamente...' }
+          format.js { render 'billings/new.js.erb', info: 'Reserva modificada satisfactoriamente...' }
         else
           format.html { redirect_to @booking, info: 'Reserva modificada satisfactoriamente...' }
           format.json { render :show, status: :ok, location: @booking }
